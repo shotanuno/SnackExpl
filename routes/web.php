@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SnackController; 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
+
+//laravel9.*ではコントローラーのuse宣言をする
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +38,7 @@ Route::get('/snacks/{snack}', [SnackController::class, 'show']);
 Route::put('/snacks/{snack}', [SnackController::class, 'update']);
 Route::post('/snacks', [SnackController::class, 'store']);
 Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
+
+Route::get('/comments', [CommentController::class, 'index']);
 
 require __DIR__.'/auth.php';
