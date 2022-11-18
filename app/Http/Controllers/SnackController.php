@@ -26,7 +26,7 @@ class SnackController extends Controller
      */
     public function create()
     {
-        //
+        return view('snacks/create');
     }
 
     /**
