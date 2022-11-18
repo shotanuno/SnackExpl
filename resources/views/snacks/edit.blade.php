@@ -29,6 +29,9 @@
             <input type="submit" value="保存">
         </form>
     </div>
+    <div class="footer" style='padding: 0 0 0 50px;'>
+        <a href="/" >戻る</a>
+    </div>
 </body>
 
 </x-app-layout>
