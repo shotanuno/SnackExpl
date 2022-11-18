@@ -25,7 +25,7 @@
         <div class='paginate' style='padding: 0 0 0 70px;'>
             {{ $snacks->links() }}
         </div>
-        {{-- お菓子の追加ページに飛ぶリンクをここに記述 --}}
+        <a href='/snacks/create' style='padding: 0 0 0 50px;'>[お菓子の追加]</a>
         
         {{-- お菓子削除時に表示されるscriptのコードをここに記述 --}}
     </body>
