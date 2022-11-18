@@ -20,6 +20,9 @@
                 </div>
             @endforeach
         </div>
+        <div class='paginate' style='padding: 0 0 0 70px;'>
+            {{ $snacks->links() }}
+        </div>
     </body>
 </html>
 
