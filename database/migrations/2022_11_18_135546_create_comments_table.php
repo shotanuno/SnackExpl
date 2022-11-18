@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('title', 30);
             $table->string('body', 300);
             $table->tinyInteger('rating');
-            $table->timestamps();
-            $table->softDeletes();
             $table->foreignId('snack_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
