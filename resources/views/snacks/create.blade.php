@@ -12,12 +12,13 @@
             @csrf
             <div class="name">
                 <h2>お菓子名:</h2>
-                <input type="text" name="snack[name]" placeholder="公式の名称でお願いします"/>
+                <input type="text" name="snack[name]" placeholder="公式の名称でお願いします" value="{{ old('snack.name') }}"/>
                 <p class="name__error" style="color:red">{{ $errors->first('snack.name') }}</p>
             </div>
             <div class="overview">
                 <h2 style='padding: 20px 0 0 0;'>詳細:</h2>
                 <textarea name="snack[overview]" placeholder="そのお菓子の詳細について記入してください"></textarea>
+                {{-- バリデーションエラーの際、textareaだとvalue属性を使えないため要改善 --}}
                 <p class="overview__error" style="color:red">{{ $errors->first('snack.overview') }}</p>
             </div>
             <div class='image'>
