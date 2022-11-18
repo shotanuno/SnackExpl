@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Comment extends Model
 {
     use HasFactory;
+    
+    public function snack()
+    {
+        return $this->belongsTo(Snack::class);
+    }
 }
