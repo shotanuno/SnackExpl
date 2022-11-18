@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Snack;
 use Illuminate\Http\Request;
+use App\Http\Requests\SnackRequest;
 
 class SnackController extends Controller
 {
@@ -35,9 +36,13 @@ class SnackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SnackRequest $request, Snack $snack)
     {
-        //
+        $input_snack=$request['snack'];
+        $snack->fill($input_snack)->save();
+        //この後の行にimageにかんするコードを記述
+        
+        return redirect('/snacks/' . $snack->id);
     }
 
     /**

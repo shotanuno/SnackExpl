@@ -28,7 +28,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [SnackController::class, 'index']);
-Route::get('snacks/create', [SnackController::class, 'create']);
+Route::get('/snacks/create', [SnackController::class, 'create']);
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
+Route::post('/snacks', [SnackController::class, 'store']);
 
 require __DIR__.'/auth.php';
