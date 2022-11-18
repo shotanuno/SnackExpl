@@ -32,7 +32,7 @@
         
         <a href='/snacks/{{ $snack->id }}/edit' style='padding: 0 0 0 70px;'>[編集]</a>
         
-        <div class="footer" style='padding: 0 0 0 50px;'>
+        <div class="footer" style='padding: 20px 0 0 50px;'>
             <a href="/" >戻る</a>
         </div>
     </body>
