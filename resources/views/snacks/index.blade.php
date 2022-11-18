@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        
         <h1 style='padding: 10px 30px;'>お菓子の一覧</h1>
         <div class='snacks'>
             @foreach ($snacks as $snack)
@@ -17,12 +18,16 @@
                         <a href="/snacks/{{ $snack->id }}">{{ $snack->name }}</a>
                     </h2>
                     <p class='overview'>{{ $snack->overview }}</p>
+                    {{-- お菓子の削除ボタンのコードをこの行に作成(policy使用)--}}
                 </div>
             @endforeach
         </div>
         <div class='paginate' style='padding: 0 0 0 70px;'>
             {{ $snacks->links() }}
         </div>
+        {{-- お菓子の追加ページに飛ぶリンクをここに記述 --}}
+        
+        {{-- お菓子削除時に表示されるscriptのコードをここに記述 --}}
     </body>
 </html>
 
