@@ -64,11 +64,11 @@ class SnackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Snack $snack)
     {
-        //
+        return view('snacks/edit')->with(['snack' => $snack]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
