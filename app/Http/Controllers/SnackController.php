@@ -16,7 +16,7 @@ class SnackController extends Controller
     {
         return view('snacks/index')->with([
             'snacks' => $snack->getPaginateByLimit()
-            ]);
+        ]);
     }
 
     /**
@@ -46,9 +46,11 @@ class SnackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Snack $snack)
     {
-        //
+        return view('snacks/show')->with([
+            'snack' => $snack
+        ]);
     }
 
     /**
