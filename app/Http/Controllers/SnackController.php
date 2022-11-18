@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Snack;
 use Illuminate\Http\Request;
 
 class SnackController extends Controller
@@ -11,9 +12,11 @@ class SnackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Snack $snack)
     {
-        //
+        return view('snacks/index')->with([
+            'snacks' => $snack->get()
+            ]);
     }
 
     /**
