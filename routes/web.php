@@ -29,9 +29,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', [SnackController::class, 'index']);
 Route::get('/snacks/create', [SnackController::class, 'create']);
-Route::get('/snacks/{snack}', [SnackController::class, 'show']);
-Route::post('/snacks', [SnackController::class, 'store']);
+
 Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
+Route::get('/snacks/{snack}', [SnackController::class, 'show']);
 Route::put('/snacks/{snack}', [SnackController::class, 'update']);
+Route::post('/snacks', [SnackController::class, 'store']);
+Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 
 require __DIR__.'/auth.php';

@@ -18,7 +18,11 @@
                         <a href="/snacks/{{ $snack->id }}">{{ $snack->name }}</a>
                     </h2>
                     <p class='overview'>{{ $snack->overview }}</p>
-                    {{-- お菓子の削除ボタンのコードをこの行に作成(policy使用)--}}
+                    <form action="/snacks/{{ $snack->id }}" id="form_{{ $snack->id }}" method="post" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit", onclick="return deleteSnack()" style='padding: 10px 0 0 0;'>[削除]</button> 
+                    </form>
                 </div>
             @endforeach
         </div>
@@ -27,7 +31,15 @@
         </div>
         <a href='/snacks/create' style='padding: 0 0 0 50px;'>[お菓子の追加]</a>
         
-        {{-- お菓子削除時に表示されるscriptのコードをここに記述 --}}
+        <script>
+            function deleteSnack() {
+                "use strict"
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                return true;
+                }
+                return false;
+            }
+        </script>
     </body>
 </html>
 
