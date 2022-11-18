@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Snack;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
+use App\Http\Requests\SnackEditRequest;
 
 class SnackController extends Controller
 {
@@ -76,9 +77,12 @@ class SnackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SnackEditRequest $request, Snack $snack)
     {
-        //
+        $input_snack = $request['snack'];
+        $snack->fill($input_snack)->save();
+        
+        return redirect('/snacks/' . $snack->id);
     }
 
     /**

@@ -32,5 +32,6 @@ Route::get('/snacks/create', [SnackController::class, 'create']);
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
 Route::post('/snacks', [SnackController::class, 'store']);
 Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
+Route::put('/snacks/{snack}', [SnackController::class, 'update']);
 
 require __DIR__.'/auth.php';
