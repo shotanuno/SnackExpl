@@ -28,7 +28,7 @@
         <h3 class="comment" style='padding: 20px 70px;'>このお菓子への投稿　最新10件</h3>
         {{-- このお菓子への投稿一覧の機能をここに記述 --}}
         
-        {{-- このお菓子へコメントをするページに遷移するためのボタンのリンクをここに記述 --}}
+        <a href='/comments/{{ $snack->id }}/create' style='padding: 0 0 0 70px;'>[口コミを投稿]</a>
         
         <a href='/snacks/{{ $snack->id }}/edit' style='padding: 0 0 0 70px;'>[編集]</a>
         
