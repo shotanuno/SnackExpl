@@ -10,6 +10,13 @@ class Comment extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'title',
+        'body',
+        'rating',
+        'user_id'
+    ];
+    
     public function snack()
     {
         return $this->belongsTo(Snack::class);

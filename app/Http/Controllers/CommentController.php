@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Snack;
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -39,9 +40,17 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request, Comment $comment, Snack $snack)
     {
-        //
+        $input_comment = $request['comment'];
+        $comment->fill($input_comment);
+        $comment->snack_id = $snack->id;
+        $comment->user_id = auth()->user()->id;
+        //laravel6.* 時点では48行目でuser()を書かなくても認識したので要注意
+        $comment->save();
+        
+        return redirect('/comments');
+        // コメントの詳細ページができたら、後々そちらに飛ぶよう編集
     }
 
     /**

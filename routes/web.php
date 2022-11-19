@@ -42,4 +42,6 @@ Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 
 Route::get('/comments', [CommentController::class, 'index']);
 
+Route::post('/comments/{snack}', [CommentController::class, 'store']);
+
 require __DIR__.'/auth.php';
