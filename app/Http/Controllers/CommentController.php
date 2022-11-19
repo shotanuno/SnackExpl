@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Snack;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -24,9 +25,12 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Comment $comment, Snack $snack)
     {
-        //
+        return view ('comments.create')->with([
+            'snack' => $snack
+            
+        ]);
     }
 
     /**

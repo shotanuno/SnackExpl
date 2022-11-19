@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', [SnackController::class, 'index']);
 Route::get('/snacks/create', [SnackController::class, 'create']);
+Route::get('/comments/{snack}/create', [CommentController::class, 'create']);
 
 Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
