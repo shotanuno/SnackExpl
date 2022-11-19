@@ -25,7 +25,7 @@
             @endforeach
         </div>
         <div class='paginate' style='padding: 0 0 0 70px;'>
-            {{ $comments->links() }}
+            {{ $comments->links('vendor.pagination.tailwind2') }}
         </div>
     </body>
 </html>
