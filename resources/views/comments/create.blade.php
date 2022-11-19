@@ -14,15 +14,18 @@
             <div class="title">
                 <h2>タイトル:</h2>
                 <input type="text" name="comment[title]" placeholder="タイトルを入力してください"/>
-                {{-- タイトルのバリデーションコード --}}
+                {{-- バリデーション時元の内容を保持するコードを上に追加 --}}
+                <p class="title__error" style="color:red">{{ $errors->first('comment.title') }}</p>
             </div>
             <div class="body">
                 <h2 style='padding: 10px 0 0 0;'>内容:</h2>
                 <textarea name="comment[body]" placeholder="コメントを記載"></textarea>
-                {{-- ボディのバリデーションコード --}}
+                {{-- バリデーション時元の内容を保持するコードを上に追加 --}}
+                <p class="body__error" style="color:red">{{ $errors->first('comment.body') }}</p>
                 <h2 style='padding: 10px 0 0 0;'>評価:</h2>
-                <input type="number" name="comment[rating]" min="1" max="5"> 
-                {{-- 評価のバリデーションコード --}}
+                <input type="number" name="comment[rating]" min="1" max="5">
+                {{-- バリデーション時元の内容を保持するコードを上に追加 --}}
+                <p class="rating__error" style="color:red">{{ $errors->first('comment.rating') }}</p>
             </div>
             <input type="submit" value="保存" style='padding: 10px 0 0 0;' />
         </form>
