@@ -17,7 +17,7 @@
                         <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a>
                     </h2>
                     <h3 class='snack'>
-                        {{-- ここにそのコメント先のお菓子を記述 --}}
+                        お菓子名：<a href='/snacks/{{ $comment->snack_id }}'>{{ $comment->snack->name }}</a>
                     </h3>
                     <p class='body'>{{ $comment->body }}</p>
                     {{-- 管理者権限で各コメントを削除できるようコードをここに記述 --}}
