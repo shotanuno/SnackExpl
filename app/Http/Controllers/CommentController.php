@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Snack;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
+use Illuminate\Pagination\Paginator;
 
 class CommentController extends Controller
 {
@@ -14,10 +15,11 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Comment $comment)
+    public function index()
     {
+        $comments = Comment::paginate(1);
         return view('comments.index')->with([
-            'comments' => $comment->get()
+            'comments' => $comments
         ]);
     }
 

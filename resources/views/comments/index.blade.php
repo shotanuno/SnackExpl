@@ -24,7 +24,9 @@
                 </div>
             @endforeach
         </div>
-        {{-- ペジネーションのリンクコードをここに記述 --}}
+        <div class='paginate' style='padding: 0 0 0 70px;'>
+            {{ $comments->links() }}
+        </div>
     </body>
 </html>
 
