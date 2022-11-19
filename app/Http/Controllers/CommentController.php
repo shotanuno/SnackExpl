@@ -61,9 +61,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
-        //
+        return view("comments.show")->with([
+            'comment' => $comment
+            // 後々ブックマークに関するコードを記載
+        ]);
     }
 
     /**
