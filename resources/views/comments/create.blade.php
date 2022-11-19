@@ -26,7 +26,7 @@
             </div>
             <input type="submit" value="保存" style='padding: 10px 0 0 0;' />
         </form>
-        {{-- 前のページとの導線をここに追加 --}}
+        <a href='/snacks/{{ $snack->id }}' style='padding: 20px 0 0 50px;'>[戻る]</a>
     </body>
 </html>
 
