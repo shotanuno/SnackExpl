@@ -75,9 +75,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
-        //
+        return view('comments.edit')->with([
+            'comment' => $comment
+        ]);
     }
 
     /**
