@@ -25,7 +25,7 @@
             <div class='content__body'>
                 <h2 style='padding: 10px 0 0 0;'>内容:</h2>
                 <textarea name='comment[body]'>{{ $comment->body }}</textarea>
-                <p class='comment_body' style='coler:red'>{{ $errors->first('comment.body') }}</p>
+                <p class='comment_body' style='color:red'>{{ $errors->first('comment.body') }}</p>
             </div>
             <div class='content__average'>
                 <h2>評価:</h2>
