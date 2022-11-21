@@ -19,17 +19,17 @@
             <div class='content__title'>
                 <h2>タイトル:</h2>
                 <input type='text' name='comment[title]' value="{{ $comment->title }}">
-                {{-- titleのバリデーション機能追加 --}}
+                <p class='comment_title' style='color:red'>{{ $errors->first('comment.title') }}</p>
             </div>
             <div class='content__body'>
                 <h2 style='padding: 10px 0 0 0;'>内容:</h2>
                 <textarea name='comment[body]'>{{ $comment->body }}</textarea>
-                {{-- bodyのバリデーション機能追加 --}}
+                <p class='comment_body' style='coler:red'>{{ $errors->first('comment.body') }}</p>
             </div>
             <div class='content__average'>
                 <h2>評価:</h2>
                 <input type="number" name="comment[rating]" min="1" max="5"　value="{{ $comment->rating }}">
-                {{-- ratingのバリデーション機能追加 --}}
+                <p class='comment_rating' style='color:red'>{{ $errors->first('comment.rating') }}</p>
             </div>
             <input type="submit" value="保存">
         </form>
