@@ -91,7 +91,12 @@ class CommentController extends Controller
      */
     public function update(CommentRequest $request, Comment $comment)
     {
-        //
+        $input_comment = $request['comment'];
+        $comment->fill($input_comment);
+        $comment->user_id = auth()->user()->id;
+        $comment->save();
+        
+        return redirect('/comments/' . $comment->id);
     }
 
     /**

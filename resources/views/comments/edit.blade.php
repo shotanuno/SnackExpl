@@ -13,7 +13,8 @@
     <body>
     <h1 class="title" style='padding: 20px 0 0 50px;'>コメントの編集画面</h1>
     <div class="content" style='padding: 20px 70px;'>
-        <form action="/comments/{{ $comment->id }}" method="POST">
+        <form action='{{ route('comment.update', ['comment' => $comment->id]) }}' method="POST">
+            {{-- action='/comments/{{ $comment->id }}' でもいけるが、今回は名前付きルーティングを使用 --}}
             @csrf
             @method('PUT')
             <div class='content__title'>

@@ -19,17 +19,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 Route::get('/', [SnackController::class, 'index']);
 Route::get('/snacks/create', [SnackController::class, 'create']);
 Route::get('/comments/{snack}/create', [CommentController::class, 'create']);
@@ -43,7 +32,19 @@ Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 Route::get('/comments', [CommentController::class, 'index']);
 
 Route::get('/comments/{comment}', [CommentController::class, 'show']);
-Route::get('comments/{comments}/edit', [CommentController::class, 'edit']);
+Route::get('comments/{comment}/edit', [CommentController::class, 'edit']);
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
 Route::post('/comments/{snack}', [CommentController::class, 'store']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 
 require __DIR__.'/auth.php';
