@@ -22,9 +22,10 @@
             </div>
             <div class='image'>
                 <h2 style='padding: 20px 0 0 0;'>画像:</h2>
-                {{-- 画像の追加フォームのコードをここに記述 --}}
+                <input type="file" name="image">
+                <button>画像をアップロード</button>
             </div>
-            <input type="submit" value="保存"/>
+            <input type="submit" value="保存" style='padding: 15px 0;'/>
         </form>
         <div class="back" style='padding: 0 0 0 50px;'>[<a href="/">戻る</a>]</div>
     </body>
