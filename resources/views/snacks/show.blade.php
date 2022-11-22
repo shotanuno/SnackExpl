@@ -24,6 +24,7 @@
                 <div class='add_image'>
                     <input type="file" name="image"/>
                     <input type="submit" value="追加"/>
+                    <p style='color:red'>{{ $errors->first('image') }}</p>
                 </div>
             </form>
         </div>

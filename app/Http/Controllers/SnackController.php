@@ -8,6 +8,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
 use App\Http\Requests\SnackEditRequest;
+use App\Http\Requests\SnackImageRequest;
 use Illuminate\Pagination\Paginator;
 use Cloudinary;
 
@@ -53,7 +54,7 @@ class SnackController extends Controller
     }
     
     
-    public function add(Request $request, Snack $snack, Image $image)
+    public function add(SnackImageRequest $request, Snack $snack, Image $image)
     {
         $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         $image->image_path = $image_url;
