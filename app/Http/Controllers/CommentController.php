@@ -51,7 +51,7 @@ class CommentController extends Controller
         //laravel6.* 時点では48行目でuser()を書かなくても認識したので要注意
         $comment->save();
         
-        return redirect('/comments');
+        return redirect('/comments/' . $comment->id);
         // コメントの詳細ページができたら、後々そちらに飛ぶよう編集
     }
 
