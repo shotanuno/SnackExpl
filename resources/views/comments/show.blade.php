@@ -29,14 +29,16 @@
         <div class='comment_rating'>
             <h2 class="rating" style='padding: 10px 0 0 70px;'>評価：{{ $comment->rating }}</h2>
         </div>
-        
-        {{-- コメントの編集ページへの導線をここに記述 --}}
-        
+        <div class='to_edit' style='padding: 10px 50px;'>
+        <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
+        </div>
         {{-- コメントの削除form,ボタンのコードをここに記述 --}}
         
         {{-- コメントへのbookmark機能をここに記述 --}}
         
-        <a href="{{ url()->previous() }}" style='padding: 20px 0 0 50px;'>[戻る]</a>
+        <div class='to_previous' style='padding: 10px 50px;'>
+        <a href="{{ url()->previous() }}">[戻る]</a>
+        </div>
         
         {{-- コメント削除のスクリプトをここに記述 --}}
     </body>
