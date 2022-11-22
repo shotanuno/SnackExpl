@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
 use App\Http\Requests\SnackEditRequest;
 use Illuminate\Pagination\Paginator;
+//cloudinaryとimageモデルのuse宣言をする
 
 class SnackController extends Controller
 {
