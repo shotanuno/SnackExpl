@@ -35,6 +35,7 @@ Route::get('/comments/{comment}', [CommentController::class, 'show']);
 Route::get('comments/{comment}/edit', [CommentController::class, 'edit']);
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
 Route::post('/comments/{snack}', [CommentController::class, 'store']);
+Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comment.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -32,7 +32,12 @@
         <div class='to_edit' style='padding: 10px 50px;'>
         <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
         </div>
-        {{-- コメントの削除form,ボタンのコードをここに記述 --}}
+        
+        <form action='{{ route('comment.delete', ['comment' => $comment->id]) }}' id="form_{{ $comment->id }}" method="post" style="display:inline; padding: 10px 50px;">
+            @csrf
+            @method('DELETE')
+            <button type="submit", onclick="return deleteComment()">[削除する]</button> 
+        </form>
         
         {{-- コメントへのbookmark機能をここに記述 --}}
         
@@ -40,7 +45,15 @@
             <a href="{{ url()->previous() }}">[戻る]</a>
         </div>
         
-        {{-- コメント削除のスクリプトをここに記述 --}}
+        <script>
+            function deleteComment() {
+                "use strict"
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                return true;
+                }
+                return false;
+            }
+        </script>
     </body>
 </html>
 
