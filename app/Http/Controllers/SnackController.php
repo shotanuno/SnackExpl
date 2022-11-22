@@ -58,9 +58,12 @@ class SnackController extends Controller
     {
         $comment = Comment::where('snack_id', $snack->id)
             ->orderBy('created_at', 'DESC')->paginate(10);
+        $raw_rating = Comment::where('snack_id', $snack->id)->average('rating');
+        $rating = round($raw_rating, 1);
         return view('snacks/show')->with([
             'snack' => $snack,
-            'comments' => $comment
+            'comments' => $comment,
+            'rating' => $rating
         ]);
     }
 
