@@ -23,7 +23,6 @@
             <div class='image'>
                 <h2 style='padding: 20px 0 0 0;'>画像:</h2>
                 <input type="file" name="image">
-                <button>画像をアップロード</button>
             </div>
             <input type="submit" value="保存" style='padding: 15px 0;'/>
         </form>

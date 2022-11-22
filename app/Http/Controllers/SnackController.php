@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Snack;
 use App\Models\Comment;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
 use App\Http\Requests\SnackEditRequest;
 use Illuminate\Pagination\Paginator;
-//cloudinaryとimageモデルのuse宣言をする
+use Cloudinary;
 
 class SnackController extends Controller
 {
@@ -40,11 +41,13 @@ class SnackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SnackRequest $request, Snack $snack)
+    public function store(SnackRequest $request, Snack $snack, Image $image)
     {
         $input_snack=$request['snack'];
         $snack->fill($input_snack)->save();
-        //この後の行にimageにかんするコードを記述
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $image->image_path = $image_url;
+        $snack->images()->save($image);
         
         return redirect('/snacks/' . $snack->id);
     }
