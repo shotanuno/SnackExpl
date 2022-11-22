@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SnackController; 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
+
+//laravel9.*ではコントローラーのuse宣言をする
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/', [SnackController::class, 'index']);
+Route::get('/snacks/create', [SnackController::class, 'create']);
+Route::get('/comments/{snack}/create', [CommentController::class, 'create']);
+
+Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
+Route::get('/snacks/{snack}', [SnackController::class, 'show']);
+Route::put('/snacks/{snack}', [SnackController::class, 'update']);
+Route::post('/snacks', [SnackController::class, 'store']);
+Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
+
+Route::get('/comments', [CommentController::class, 'index']);
+
+Route::get('/comments/{comment}', [CommentController::class, 'show']);
+Route::get('comments/{comment}/edit', [CommentController::class, 'edit']);
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
+Route::post('/comments/{snack}', [CommentController::class, 'store']);
+Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comment.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,13 +47,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/', [SnackController::class, 'index']);
-Route::get('/snacks/create', [SnackController::class, 'create']);
-
-Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
-Route::get('/snacks/{snack}', [SnackController::class, 'show']);
-Route::put('/snacks/{snack}', [SnackController::class, 'update']);
-Route::post('/snacks', [SnackController::class, 'store']);
-Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 
 require __DIR__.'/auth.php';

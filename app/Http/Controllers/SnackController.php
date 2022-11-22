@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Snack;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
 use App\Http\Requests\SnackEditRequest;
+use Illuminate\Pagination\Paginator;
 
 class SnackController extends Controller
 {
@@ -54,8 +56,14 @@ class SnackController extends Controller
      */
     public function show(Snack $snack)
     {
+        $comment = Comment::where('snack_id', $snack->id)
+            ->orderBy('created_at', 'DESC')->paginate(10);
+        $raw_rating = Comment::where('snack_id', $snack->id)->average('rating');
+        $rating = round($raw_rating, 1);
         return view('snacks/show')->with([
-            'snack' => $snack
+            'snack' => $snack,
+            'comments' => $comment,
+            'rating' => $rating
         ]);
     }
 
