@@ -51,7 +51,17 @@ class SnackController extends Controller
         
         return redirect('/snacks/' . $snack->id);
     }
-
+    
+    
+    public function add(Request $request, Snack $snack, Image $image)
+    {
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $image->image_path = $image_url;
+        $snack->images()->save($image);
+        
+        return redirect('/snacks/' . $snack->id);
+    }
+    
     /**
      * Display the specified resource.
      *

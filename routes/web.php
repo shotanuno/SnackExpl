@@ -26,6 +26,7 @@ Route::get('/comments/{snack}/create', [CommentController::class, 'create']);
 Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
 Route::put('/snacks/{snack}', [SnackController::class, 'update']);
+Route::post('/snacks/{snack}', [SnackController::class, 'add']);
 Route::post('/snacks', [SnackController::class, 'store']);
 Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 

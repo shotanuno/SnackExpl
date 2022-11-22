@@ -21,7 +21,7 @@
             <h2 style='padding: 10px 0 0 30px;'>お菓子の画像を追加する</h2>
             <form action='/snacks/{{ $snack->id }}' method='POST' enctype='multipart/form-data'>
                 @csrf
-                <div class='image'>
+                <div class='add_image'>
                     <input type="file" name="image"/>
                     <input type="submit" value="追加"/>
                 </div>
