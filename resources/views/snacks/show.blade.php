@@ -25,8 +25,17 @@
                 {{-- お菓子の評価をここに記述 --}}
             </div>
         </div>
-        <h3 class="comment" style='padding: 20px 70px;'>このお菓子への投稿　最新10件</h3>
-        {{-- このお菓子への投稿一覧の機能をここに記述 --}}
+        <div class='comment'>
+            <h3 style='padding: 10px 70px;'>このお菓子への投稿　最新10件</h3>
+            @foreach($comments as $comment)
+                <div class='comment_content' style='padding: 5px 70px;'>
+                    <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a><br>
+                </div>
+            @endforeach  
+            <div class='paginate' style='padding: 0 0 0 70px;'>
+                {{ $comments->links('vendor.pagination.tailwind2') }}
+            </div>
+        </div>
         
         <a href='/comments/{{ $snack->id }}/create' style='padding: 0 0 0 70px;'>[口コミを投稿]</a>
         
