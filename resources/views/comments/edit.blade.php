@@ -31,10 +31,13 @@
                 <h2>評価:</h2>
                 <input type="number" name="comment[rating]" min="1" max="5"　value="{{ $comment->rating }}">
                 <p class='comment_rating' style='color:red'>{{ $errors->first('comment.rating') }}</p>
+                {{-- ratingのvalueがうまく機能していないので要修正 --}}
             </div>
             <input type="submit" value="保存">
         </form>
-        {{-- 直前のページに戻るリンクを追加 --}}
+    </div>
+    <div class='to_previous' style='padding: 10px 50px;'>
+        <a href="{{ url()->previous() }}">[戻る]</a>
     </div>
 </body>
 

@@ -37,7 +37,7 @@
         {{-- コメントへのbookmark機能をここに記述 --}}
         
         <div class='to_previous' style='padding: 10px 50px;'>
-        <a href="{{ url()->previous() }}">[戻る]</a>
+            <a href="{{ url()->previous() }}">[戻る]</a>
         </div>
         
         {{-- コメント削除のスクリプトをここに記述 --}}
