@@ -64,10 +64,13 @@ class SnackController extends Controller
             ->orderBy('created_at', 'DESC')->paginate(10);
         $raw_rating = Comment::where('snack_id', $snack->id)->average('rating');
         $rating = round($raw_rating, 1);
+        // 上のコードをbladeファイル内に書く
+        $image = Image::whereImageable_id($snack->id)->where('imageable_type', 'App\Models\Snack')->get();
         return view('snacks/show')->with([
             'snack' => $snack,
             'comments' => $comment,
-            'rating' => $rating
+            'rating' => $rating,
+            'images' => $image
         ]);
     }
 

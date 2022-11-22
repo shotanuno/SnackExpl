@@ -14,7 +14,11 @@
         <h1 class="name" style='padding: 10px 0 0 50px;'>
             {{ $snack->name }}
         </h1>
-        {{-- お菓子の追加、表示機能をこの間に記述する --}}
+        <div class="image" style='padding: 10px 0 0 30px;'>
+            @foreach($images as $image)
+                <img src="{{ $image->image_path }}">
+            @endforeach
+        </div>
         <div class="content" style='padding: 20px 70px;'>
             <div class="content__snack">
                 <h2>コンビニ名</h2>
