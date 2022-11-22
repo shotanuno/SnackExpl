@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Model
 {
-    //softdeleteのuse宣言をする
+    use SoftDeletes;
     
     public function imageable()
     {

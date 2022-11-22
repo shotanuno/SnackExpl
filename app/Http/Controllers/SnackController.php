@@ -117,10 +117,13 @@ class SnackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Snack $snack)
+    public function delete(Snack $snack, Image $image, Comment $comment)
     {
+        // Cloudinary::destroy($image->public_id); このコードによりcloudinary上の画像も削除される.
+        // 後々imagesのテーブルにpublic_idのカラムを追加すべき.
         $snack->delete();
-        // この行に、imageとcommentを削除するコードを記述
+        $snack->images()->delete($image);
+        $snack->comments()->delete($comment);
         return redirect('/');
     }
 }
