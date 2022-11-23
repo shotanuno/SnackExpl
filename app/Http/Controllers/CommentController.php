@@ -64,8 +64,8 @@ class CommentController extends Controller
     public function show(Comment $comment)
     {
         return view("comments.show")->with([
-            'comment' => $comment
-            // 後々ブックマークに関するコードを記載
+            'comment' => $comment,
+            'bookmark_list' => auth()->user()->comments()->get()
         ]);
     }
 
@@ -109,6 +109,17 @@ class CommentController extends Controller
     {
         $comment->delete();
         return redirect('/snacks/' . $comment->snack->id);
-        
+    }
+    
+    public function bookmark(Request $request, Comment $comment)
+    {
+        $comment->users()->attach(auth()->user());
+        return redirect('/comments/' . $comment->id);
+    }
+    
+    public function unbookmark(Request $request, Comment $comment)
+    {
+        $comment->users()->detach(auth()->user());
+        return redirect('/comments/' . $comment->id);
     }
 }
