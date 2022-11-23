@@ -121,8 +121,6 @@ class SnackController extends Controller
      */
     public function delete(Snack $snack, Image $image, Comment $comment)
     {
-        //  このコードによりcloudinary上の画像も削除される.
-        // 後々imagesのテーブルにpublic_idのカラムを追加すべき.
         foreach($snack->images as $image){
             Cloudinary::destroy($image->public_id);
         }
