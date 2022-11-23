@@ -47,6 +47,8 @@ class SnackController extends Controller
         $input_snack=$request['snack'];
         $snack->fill($input_snack)->save();
         $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $result = $request->file('image')->storeOnCloudinary();
+        $image->public_id = $result->getPublicId();
         $image->image_path = $image_url;
         $snack->images()->save($image);
         
