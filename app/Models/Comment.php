@@ -22,4 +22,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Snack::class);
     }
+    
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
