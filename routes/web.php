@@ -31,7 +31,7 @@ Route::post('/snacks', [SnackController::class, 'store']);
 Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 
 Route::get('/comments', [CommentController::class, 'index']);
-
+Route::get('/comments/bookmarked', [CommentController::class, 'bookmarked']);
 Route::get('/comments/{comment}', [CommentController::class, 'show']);
 Route::get('comments/{comment}/edit', [CommentController::class, 'edit']);
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');

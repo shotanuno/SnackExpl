@@ -111,6 +111,14 @@ class CommentController extends Controller
         return redirect('/snacks/' . $comment->snack->id);
     }
     
+    public function bookmarked()
+    {
+        $comment = auth()->user()->comments()->orderBy('created_at', 'desc')->paginate(10);
+        return view('comments.bookmarked')->with([
+            'comments' => $comment
+        ]);
+    }
+    
     public function bookmark(Request $request, Comment $comment)
     {
         $comment->users()->attach(auth()->user());
