@@ -57,8 +57,9 @@ class SnackController extends Controller
     
     public function add(SnackImageRequest $request, Snack $snack, Image $image)
     {
-        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        $image->image_path = $image_url;
+        $result = $request->file('image')->storeOnCloudinary();
+        $image->public_id = $result->getPublicId();
+        $image->image_path = $result->getSecurePath();
         $snack->images()->save($image);
         
         return redirect('/snacks/' . $snack->id);
