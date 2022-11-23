@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Snack;
 use App\Models\Comment;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
 use App\Http\Requests\SnackEditRequest;
+use App\Http\Requests\SnackImageRequest;
 use Illuminate\Pagination\Paginator;
+use Cloudinary;
 
 class SnackController extends Controller
 {
@@ -39,15 +42,29 @@ class SnackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SnackRequest $request, Snack $snack)
+    public function store(SnackRequest $request, Snack $snack, Image $image)
     {
         $input_snack=$request['snack'];
         $snack->fill($input_snack)->save();
-        //この後の行にimageにかんするコードを記述
+        $result = $request->file('image')->storeOnCloudinary();
+        $image->public_id = $result->getPublicId();
+        $image->image_path = $result->getSecurePath();
+        $snack->images()->save($image);
         
         return redirect('/snacks/' . $snack->id);
     }
-
+    
+    
+    public function add(SnackImageRequest $request, Snack $snack, Image $image)
+    {
+        $result = $request->file('image')->storeOnCloudinary();
+        $image->public_id = $result->getPublicId();
+        $image->image_path = $result->getSecurePath();
+        $snack->images()->save($image);
+        
+        return redirect('/snacks/' . $snack->id);
+    }
+    
     /**
      * Display the specified resource.
      *
@@ -60,10 +77,13 @@ class SnackController extends Controller
             ->orderBy('created_at', 'DESC')->paginate(10);
         $raw_rating = Comment::where('snack_id', $snack->id)->average('rating');
         $rating = round($raw_rating, 1);
+        // 上のコードをbladeファイル内に書く
+        $image = Image::whereImageable_id($snack->id)->where('imageable_type', 'App\Models\Snack')->get();
         return view('snacks/show')->with([
             'snack' => $snack,
             'comments' => $comment,
-            'rating' => $rating
+            'rating' => $rating,
+            'images' => $image
         ]);
     }
 
@@ -99,10 +119,14 @@ class SnackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Snack $snack)
+    public function delete(Snack $snack, Image $image, Comment $comment)
     {
+        foreach($snack->images as $image){
+            Cloudinary::destroy($image->public_id);
+        }
         $snack->delete();
-        // この行に、imageとcommentを削除するコードを記述
+        $snack->images()->delete($image);
+        $snack->comments()->delete($comment);
         return redirect('/');
     }
 }

@@ -14,7 +14,20 @@
         <h1 class="name" style='padding: 10px 0 0 50px;'>
             {{ $snack->name }}
         </h1>
-        {{-- お菓子の追加、表示機能をこの間に記述する --}}
+        <div class="image" style='padding: 10px 0 0 30px;'>
+            @foreach($images as $image)
+                <img src="{{ $image->image_path }}">
+            @endforeach
+            <h2 style='padding: 10px 0 0 30px;'>お菓子の画像を追加する</h2>
+            <form action='/snacks/{{ $snack->id }}' method='POST' enctype='multipart/form-data'>
+                @csrf
+                <div class='add_image'>
+                    <input type="file" name="image"/>
+                    <input type="submit" value="追加"/>
+                    <p style='color:red'>{{ $errors->first('image') }}</p>
+                </div>
+            </form>
+        </div>
         <div class="content" style='padding: 20px 70px;'>
             <div class="content__snack">
                 <h2>コンビニ名</h2>
