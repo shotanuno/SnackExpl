@@ -115,19 +115,20 @@ class CommentController extends Controller
     {
         $comment = auth()->user()->comments()->orderBy('created_at', 'desc')->paginate(10);
         return view('comments.bookmarked')->with([
-            'comments' => $comment
+            'comments' => $comment,
+            'bookmark_list' => auth()->user()->comments()->get()
         ]);
     }
     
     public function bookmark(Request $request, Comment $comment)
     {
         $comment->users()->attach(auth()->user());
-        return redirect('/comments/' . $comment->id);
+        return redirect(url()->previous());
     }
     
     public function unbookmark(Request $request, Comment $comment)
     {
         $comment->users()->detach(auth()->user());
-        return redirect('/comments/' . $comment->id);
+        return redirect(url()->previous());
     }
 }

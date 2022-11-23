@@ -19,6 +19,20 @@
                     <h3 class='snack'>
                         お菓子名：<a href='/snacks/{{ $comment->snack_id }}'>{{ $comment->snack->name }}</a>
                     </h3>
+                    <div class="comment_bookmark" style='padding: 20px 0 0 50px;'>
+                    @if ($bookmark_list->contains($comment->id))
+                        <form action='{{ route('comment.unbookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
+                            <!-- action="/comments/{ $comment->id }/unbookmark"だと上手く認識されない -->
+                        @csrf
+                        <button type="submit"><img class="w-1/2" src="{{ asset('/image/bookmark.jpg') }}"></button>
+                        </form>
+                    @else
+                        <form action='{{ route('comment.bookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
+                        @csrf
+                        <button type="submit"><img class="w-1/2" src="{{ asset('/image/unbookmark.jpg') }}"></button>
+                        </form>
+                    @endif
+        </div>
                 </div>
             @endforeach
             <div class='paginate' style='padding: 0 0 0 70px;'>
