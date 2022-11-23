@@ -46,11 +46,13 @@
                     @csrf
                     <button type="submit"><img class="w-1/2" src="{{ asset('/image/bookmark.jpg') }}"></button>
                 </form>
+                <span>ブックマーク数：{{ $comment->users()->count() }}</span>
             @else
                 <form action='{{ route('comment.bookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
                     @csrf
                     <button type="submit"><img class="w-1/2" src="{{ asset('/image/unbookmark.jpg') }}"></button>
                 </form>
+                <span>ブックマーク数：{{ $comment->users()->count() }}</span>
             @endif
         </div>
         
