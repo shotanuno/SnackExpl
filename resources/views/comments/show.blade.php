@@ -39,7 +39,20 @@
             <button type="submit", onclick="return deleteComment()">[削除する]</button> 
         </form>
         
-        {{-- コメントへのbookmark機能をここに記述 --}}
+        <div class="comment_bookmark" style='padding: 20px 0 0 50px;'>
+            @if ($bookmark_list->contains($comment->id))
+                <form action='{{ route('comment.unbookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
+                    <!-- action="/comments/{ $comment->id }/unbookmark"だと上手く認識されない -->
+                    @csrf
+                    <button type="submit"><img class="w-1/2" src="{{ asset('/image/bookmark.jpg') }}"></button>
+                </form>
+            @else
+                <form action='{{ route('comment.bookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
+                    @csrf
+                    <button type="submit"><img class="w-1/2" src="{{ asset('/image/unbookmark.jpg') }}"></button>
+                </form>
+            @endif
+        </div>
         
         <div class='to_previous' style='padding: 10px 50px;'>
             <a href="{{ url()->previous() }}">[戻る]</a>
