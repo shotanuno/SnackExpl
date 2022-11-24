@@ -17,9 +17,11 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Store $store)
     {
-        //
+        return view('stores.index')->with([
+            'stores' => $store
+        ]);
     }
 
     /**
