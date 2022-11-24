@@ -28,7 +28,7 @@
             </div>
             <input type="submit" value="保存" style='padding: 15px 0;'/>
         </form>
-        {{-- 前のページに戻るリンクを記述 --}}
+        <div class="back" style='padding: 0 0 0 50px;'><a href='/stores'>戻る</a></div>
     </body>
 </html>
 
