@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1 style='padding: 10px 50px;'>お店の追加</h1>
-        <form action="/snacks" method="POST" enctype="multipart/form-data" style='padding: 20px 70px;'>
+        <form action="/stores" method="POST" enctype="multipart/form-data" style='padding: 20px 70px;'>
             @csrf
             <div class="name">
                 <h2>店名:</h2>

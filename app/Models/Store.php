@@ -11,6 +11,11 @@ class Store extends Model
     use HasFactory;
     // SoftDeleteをuse宣言する
     
+    protected $fillable =[
+        'name',
+        'overview'
+    ];
+    
     public function snacks()
     {
         return $this->belongsToMany(Snack::class);

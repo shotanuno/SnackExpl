@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
-// Imageモデルのuse宣言
+use App\Models\Image;
 // Snackモデルのuse宣言
 use Illuminate\Http\Request;
-// StoreRequestのuse宣言
+use App\Http\Requests\StoreRequest;
 use Illuminate\Pagination\Paginator;
-// Cloudinaryのuse宣言
+use Cloudinary;
 
 class StoreController extends Controller
 {
@@ -40,9 +40,16 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request, Store $store, Image $image)
     {
-        //
+        $input_store =$request['store'];
+        $store->fill($input_store)->save();
+        $result = $request->file('image')->storeOnCloudinary();
+        $image->public_id = $result->getPublicId();
+        $image->image_path = $result->getSecurePath();
+        $store->images()->save($image);
+        
+        return redirect('/stores/' . $store->id);
     }
 
     /**
