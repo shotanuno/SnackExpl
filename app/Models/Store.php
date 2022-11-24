@@ -16,7 +16,10 @@ class Store extends Model
         return $this->belongsToMany(Snack::class);
     }
     
-    // imageとの一対多ポリモーフィックリレーションを定義する.
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
     
     
 }
