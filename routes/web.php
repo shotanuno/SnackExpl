@@ -42,6 +42,7 @@ Route::post('/comments/{comment}/bookmark', [CommentController::class, 'bookmark
 Route::post('comments/{comment}/unbookmark', [CommentController::class, 'unbookmark'])->name('comment.unbookmark');
 
 Route::get('/stores', [StoreController::class, 'index']);
+Route::get('/stores/create', [StoreController::class, 'create']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
