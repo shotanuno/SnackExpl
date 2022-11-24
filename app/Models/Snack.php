@@ -26,6 +26,11 @@ class Snack extends Model
         return $this->hasMany(Comment::class);
     }
     
+    public function stores()
+    {
+        return $this->belongsToMany(Store::class);
+    }
+    
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
