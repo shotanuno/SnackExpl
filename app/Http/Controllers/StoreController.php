@@ -59,9 +59,11 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Store $store)
     {
-        //
+        return view('stores.show')->with([
+            'store' => $store
+        ]);
     }
 
     /**
