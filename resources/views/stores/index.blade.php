@@ -13,12 +13,16 @@
         <h1 style='padding: 10px 50px;'>お店一覧</h1>
         <div class='stores'>
             @foreach ($stores as $store)
-                <div class='store' style='padding: 20px 70px;'>
-                    {{-- 各store毎のimagesを表示--}}
-                    <h2 class='name'>
-                        {{--　<a href="/stores/{{ $store->id }}">{{ $store->name }}</a> --}}
-                    </h2>
-                </div>
+                @foreach ($store->images as $image)
+                    <div class='store_name' style='padding: 50px 0 0 20%;'>
+                        <a href='/stores/{{ $store->id }}'>
+                            <font size='7'><p>{{ $store->name }}</p></font>
+                        </a>
+                    </div>
+                    <div class='store_image'>
+                        <img src="{{ $image->image_path }}" style='display: block; margin: auto; padding: 0 0 30px 0'>
+                    </div>
+                @endforeach
             @endforeach
         </div>
         
