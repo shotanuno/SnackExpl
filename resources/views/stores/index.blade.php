@@ -26,7 +26,7 @@
             @endforeach
         </div>
         
-        {{-- storeの追加コードを記述 --}}
+        <div class="back" style='padding: 50px 20%;'><a href='/stores/create'>[お店の追加]</a></div>
         
         {{-- store削除時scriptのコードを記述 --}}
     </body>
