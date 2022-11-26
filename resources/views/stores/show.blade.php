@@ -14,8 +14,8 @@
         <h1 class="name" style='padding: 10px 0 0 50px;'>
             {{ $store->name }}
         </h1>
-        <div class="image" style='padding: 10px 0 0 30px;'>
-                {{--画像を表示するコードを記述--}}
+        <div class="image" style='padding: 10px 0 0 70px;'>
+                <img src="{{ $image->image_path }}">
         </div>
         <div class="content" style='padding: 20px 70px;'>
             <div class="content__store">

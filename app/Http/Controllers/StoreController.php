@@ -61,8 +61,10 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
+        $image = Image::whereImageable_id($store->id)->where('imageable_type', 'App\Models\Store')->first();
         return view('stores.show')->with([
-            'store' => $store
+            'store' => $store,
+            'image' => $image
         ]);
     }
 
