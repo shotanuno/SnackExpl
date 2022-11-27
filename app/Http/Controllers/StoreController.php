@@ -88,9 +88,12 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Store $store)
     {
-        //
+        $input_store = $request['store'];
+        $store->fill($input_store)->save();
+        
+        return redirect('/stores/' . $store->id);
     }
 
     /**

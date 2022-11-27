@@ -45,6 +45,7 @@ Route::get('/stores', [StoreController::class, 'index']);
 Route::get('/stores/create', [StoreController::class, 'create']);
 Route::get('/stores/{store}', [StoreController::class, 'show']);
 Route::get('/stores/{store}/edit', [StoreController::class, 'edit']);
+Route::put('/stores/{store}', [StoreController::class, 'update']);
 Route::post('/stores', [StoreController::class, 'store']);
 
 Route::get('/dashboard', function () {
