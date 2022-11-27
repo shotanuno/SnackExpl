@@ -18,12 +18,12 @@
             @method('PUT')
             <div class='content__name' style='padding: 10px 70px;'>
                 <h2>店名:</h2>
-                <input type='text' name='store[name]'>
+                <input type='text' name='store[name]' value='{{ $store->name }}'>
                 <p class="name__error" style="color:red">{{ $errors->first('store.name') }}</p>
             </div>
             <div class='content__overview' style='padding: 10px 70px;'>
                 <h2>詳細:</h2>
-                <textarea name='store[overview]' ></textarea>
+                <textarea name='store[overview]' >{{ $store->overview }}</textarea>
                 <p class="overview__error" style="color:red">{{ $errors->first('store.overview') }}</p>
             </div>
             <input type="submit" value="保存" style='padding: 5px 70px;'>
