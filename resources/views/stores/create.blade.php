@@ -13,16 +13,16 @@
             <div class="name">
                 <h2>店名:</h2>
                 <input type="text" name="store[name]" placeholder="公式の名称でお願いします" />
-                {{-- バリデーションエラー時に表示される文を記述 --}}
+                <p class="name__error" style="color:red">{{ $errors->first('store.name') }}</p>
             </div>
             <div class="overview">
                 <h2 style='padding: 20px 0 0 0;'>詳細:</h2>
                 <textarea name="store[overview]" placeholder="そのお店の詳細について記入してください"></textarea>
-                {{-- バリデーションエラー時に表示される文を記述 --}}
+                <p class="overview__error" style="color:red">{{ $errors->first('store.overview') }}</p>
             </div>
             <div class='image'>
                 <h2 style='padding: 20px 0 0 0;'>画像:</h2>
-                {{-- バリデーションエラー時に表示される文を記述 --}}
+                <p class='image_error' style='color:red'>{{ $errors->first('image') }}</p>
                 <input type="file" name="image">
                 
             </div>
