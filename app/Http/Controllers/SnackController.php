@@ -104,7 +104,11 @@ class SnackController extends Controller
      */
     public function edit(Snack $snack)
     {
-        return view('snacks/edit')->with(['snack' => $snack]);
+        $store = Store::get();
+        return view('snacks/edit')->with([
+            'snack' => $snack,
+            'stores' => $store
+        ]);
     }
     
     /**
