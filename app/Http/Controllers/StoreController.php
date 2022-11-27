@@ -61,10 +61,12 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
+        $snack = Store::find($store->id)->snacks()->orderBy('created_at', 'DESC')->paginate(1);
         $image = Image::whereImageable_id($store->id)->where('imageable_type', 'App\Models\Store')->first();
         return view('stores.show')->with([
             'store' => $store,
-            'image' => $image
+            'image' => $image,
+            'snacks' => $snack
         ]);
     }
 

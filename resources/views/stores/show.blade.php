@@ -32,10 +32,14 @@
                 <button type="submit", onclick="return deleteStore()">[削除]</button> 
         </form>
 
-        <div class='comment'>
-            <h3 style='padding: 10px 70px;'>お菓子一覧</h3>
-            {{-- store毎のお菓子を表示するコード記述 --}}
-            {{-- 上記のお菓子のペジネーションコード記述 --}}
+        <div class='snack' style='padding: 10px 70px;'>
+            <h3>お菓子一覧</h3>
+            @foreach($snacks as $snack)
+                <a href='/snacks/{{ $snack->id }}'>・{{ $snack->name }}</a><br>
+            @endforeach
+            <div class='paginate'>
+                {{ $snacks->links('vendor.pagination.tailwind2') }}
+            </div>
         </div>
             
         </div>
