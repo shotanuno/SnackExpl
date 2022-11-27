@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Store;
 use App\Models\Image;
-// Snackモデルのuse宣言
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
+use App\Http\Requests\StoreEditRequest;
 use Illuminate\Pagination\Paginator;
 use Cloudinary;
 
@@ -88,7 +88,7 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Store $store)
+    public function update(StoreEditRequest $request, Store $store)
     {
         $input_store = $request['store'];
         $store->fill($input_store)->save();
