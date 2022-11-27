@@ -23,13 +23,14 @@
                 <p>{{ $store->overview }}</p>
             </div>
         </div>
+        <div class='store_edit' style='padding: 10px 50px;'>
+            <a href='/stores/{{ $store->id }}/edit'>[編集]</a>
+        </div>
         <div class='comment'>
             <h3 style='padding: 10px 70px;'>お菓子一覧</h3>
             {{-- store毎のお菓子を表示するコード記述 --}}
             {{-- 上記のお菓子のペジネーションコード記述 --}}
         </div>
-        
-        {{-- お店の内容編集をするページへのリンクコードを記述 --}}
         
         {{-- 前のページへのリンクコードを記述 --}}
             
