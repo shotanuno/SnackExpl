@@ -20,6 +20,7 @@
                 @foreach($stores as $store)
                     <input type="checkbox" name="store[]" id="{{ $store->id }}" value="{{ $store->id }}"><label for="{{ $store->id }}">  {{ $store->name }}<br></label>
                 @endforeach
+                <p class="store_error" style="color:red">{{ $errors->first('store[]') }}</p>
             </div>
             <div class="overview">
                 <h2 style='padding: 20px 0 0 0;'>詳細:</h2>
