@@ -122,6 +122,10 @@ class SnackController extends Controller
     {
         $input_snack = $request['snack'];
         $snack->fill($input_snack)->save();
+        $snack->stores()->detach();
+        foreach($request['store'] as $store_id){
+            $snack->stores()->attach($store_id);
+        }
         
         return redirect('/snacks/' . $snack->id);
     }
