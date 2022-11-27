@@ -12,12 +12,12 @@
             @csrf
             <div class="name">
                 <h2>店名:</h2>
-                <input type="text" name="store[name]" placeholder="公式の名称でお願いします" />
+                <input type="text" name="store[name]" placeholder="公式の名称でお願いします" value='{{ old('store.name') }}' />
                 <p class="name__error" style="color:red">{{ $errors->first('store.name') }}</p>
             </div>
             <div class="overview">
                 <h2 style='padding: 20px 0 0 0;'>詳細:</h2>
-                <textarea name="store[overview]" placeholder="そのお店の詳細について記入してください"></textarea>
+                <textarea name="store[overview]" placeholder="そのお店の詳細について記入してください">{{ old('store.overview') }}</textarea>
                 <p class="overview__error" style="color:red">{{ $errors->first('store.overview') }}</p>
             </div>
             <div class='image'>
