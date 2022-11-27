@@ -46,14 +46,19 @@ class SnackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SnackRequest $request, Snack $snack, Image $image)
+    public function store(SnackRequest $request, Snack $snack, Image $image, Store $store)
     {
         $input_snack=$request['snack'];
+        $input_store=$request['store'];
         $snack->fill($input_snack)->save();
         $result = $request->file('image')->storeOnCloudinary();
         $image->public_id = $result->getPublicId();
         $image->image_path = $result->getSecurePath();
         $snack->images()->save($image);
+        foreach($input_store as $store_id){
+            $snack->stores()->attach($store_id);
+        }
+        
         
         return redirect('/snacks/' . $snack->id);
     }

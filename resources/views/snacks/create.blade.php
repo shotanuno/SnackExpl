@@ -18,7 +18,7 @@
             <div class='store'>
                 <h2>お店</h2>
                 @foreach($stores as $store)
-                    <input type="checkbox" name="snack[store_id]" id="{{ $store->id }}" value="{{ $store->id }}"><label for="{{ $store->id }}">  {{ $store->name }}<br></label>
+                    <input type="checkbox" name="store[]" id="{{ $store->id }}" value="{{ $store->id }}"><label for="{{ $store->id }}">  {{ $store->name }}<br></label>
                 @endforeach
             </div>
             <div class="overview">
