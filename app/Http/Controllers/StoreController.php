@@ -102,8 +102,13 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Store $store, Image $image)
     {
-        //
+        foreach($store->images as $image){
+            Cloudinary::destroy($image->public_id);
+        }
+        $store->delete();
+        $store->images()->delete($image);
+        return redirect('/stores');
     }
 }

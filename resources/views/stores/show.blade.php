@@ -26,6 +26,12 @@
         <div class='store_edit' style='padding: 10px 50px;'>
             <a href='/stores/{{ $store->id }}/edit'>[編集]</a>
         </div>
+        <form action="/stores/{{ $store->id }}" id="form_{{ $store->id }}" method="post" style="display:inline; padding: 20px 50px;">
+                @csrf
+                @method('DELETE')
+                <button type="submit", onclick="return deleteStore()">[削除]</button> 
+        </form>
+
         <div class='comment'>
             <h3 style='padding: 10px 70px;'>お菓子一覧</h3>
             {{-- store毎のお菓子を表示するコード記述 --}}
@@ -33,6 +39,15 @@
         </div>
             
         </div>
+        <script>
+            function deleteStore() {
+                "use strict"
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                return true;
+                }
+                return false;
+            }
+        </script>
     </body>
 </html>
 
