@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Snack;
 use App\Models\Comment;
+use App\Models\Store;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
@@ -33,7 +34,10 @@ class SnackController extends Controller
      */
     public function create()
     {
-        return view('snacks/create');
+        $store = Store::get();
+        return view('snacks/create')->with([
+            'stores' => $store
+        ]);
     }
 
     /**
