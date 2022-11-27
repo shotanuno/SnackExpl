@@ -29,7 +29,9 @@
             <input type="submit" value="保存" style='padding: 5px 70px;'>
         </form>
     </div>
-    {{-- 前のページに戻るリンクのコードを記述 --}}
+    <div class='back' style='padding: 10px 50px;'>
+            <a href='/stores/{{ $store->id }}'>[戻る]</a>
+        </div>
 </body>
 
 </x-app-layout>
