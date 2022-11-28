@@ -21,6 +21,18 @@
                 <input type='text' name='snack[name]' value="{{ $snack->name }}">
                 <p class="name__error" style="color:red">{{ $errors->first('snack.name') }}</p>
             </div>
+            <div class='store'>
+                <h2>お店：</h2>
+                @foreach($stores as $store)
+                    @if($snack->stores->contains($store->id))
+                        <input type="checkbox" name="store[]" value="{{ $store->id }}" checked>
+                    @else
+                        <input type="checkbox" name="store[]" value="{{ $store->id }}">
+                    @endif
+                    <label for="">  {{ $store->name }}<br></label>
+                    
+                @endforeach
+            </div>
             <div class='content__overview'>
                 <h2>詳細:</h2>
                 <textarea name='snack[overview]' >{{ $snack->overview }}</textarea>

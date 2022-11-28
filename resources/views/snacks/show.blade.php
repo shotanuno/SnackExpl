@@ -14,7 +14,7 @@
         <h1 class="name" style='padding: 10px 0 0 50px;'>
             {{ $snack->name }}
         </h1>
-        <div class="image" style='padding: 10px 0 0 30px;'>
+        <div class="image" style='padding: 10px 30px;'>
             @foreach($images as $image)
                 <img src="{{ $image->image_path }}">
             @endforeach
@@ -28,10 +28,14 @@
                 </div>
             </form>
         </div>
-        <div class="content" style='padding: 20px 70px;'>
+        <div class="content" style='padding: 0 70px;'>
             <div class="content__snack">
-                <h2>コンビニ名</h2>
-                {{-- コンビニ名をここに表示し、そのリンク先に飛べるようにするコードを記述 --}}
+                <h2>店名</h2>
+                @foreach($snack->stores as $store)
+                    <div class='store' style='padding: 10px 0;'>
+                        <a href='/stores/{{ $store->id }}'>・{{ $store->name }}</a>
+                    </div>
+                @endforeach
                 <h2>お菓子の詳細</h2>
                 <p>{{ $snack->overview }}</p>
                 <h2>評価：{{ $rating }}</h2>

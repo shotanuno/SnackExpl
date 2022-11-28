@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Snack;
 use App\Models\Comment;
+use App\Models\Store;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\SnackRequest;
@@ -33,7 +34,10 @@ class SnackController extends Controller
      */
     public function create()
     {
-        return view('snacks/create');
+        $store = Store::get();
+        return view('snacks/create')->with([
+            'stores' => $store
+        ]);
     }
 
     /**
@@ -42,14 +46,19 @@ class SnackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SnackRequest $request, Snack $snack, Image $image)
+    public function store(SnackRequest $request, Snack $snack, Image $image, Store $store)
     {
         $input_snack=$request['snack'];
+        $input_store=$request['store'];
         $snack->fill($input_snack)->save();
         $result = $request->file('image')->storeOnCloudinary();
         $image->public_id = $result->getPublicId();
         $image->image_path = $result->getSecurePath();
         $snack->images()->save($image);
+        foreach($input_store as $store_id){
+            $snack->stores()->attach($store_id);
+        }
+        
         
         return redirect('/snacks/' . $snack->id);
     }
@@ -95,7 +104,11 @@ class SnackController extends Controller
      */
     public function edit(Snack $snack)
     {
-        return view('snacks/edit')->with(['snack' => $snack]);
+        $store = Store::get();
+        return view('snacks/edit')->with([
+            'snack' => $snack,
+            'stores' => $store
+        ]);
     }
     
     /**
@@ -109,6 +122,10 @@ class SnackController extends Controller
     {
         $input_snack = $request['snack'];
         $snack->fill($input_snack)->save();
+        $snack->stores()->detach();
+        foreach($request['store'] as $store_id){
+            $snack->stores()->attach($store_id);
+        }
         
         return redirect('/snacks/' . $snack->id);
     }

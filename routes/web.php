@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SnackController; 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 //laravel9.*ではコントローラーのuse宣言をする
@@ -39,6 +40,14 @@ Route::post('/comments/{snack}', [CommentController::class, 'store']);
 Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comment.delete');
 Route::post('/comments/{comment}/bookmark', [CommentController::class, 'bookmark'])->name('comment.bookmark');
 Route::post('comments/{comment}/unbookmark', [CommentController::class, 'unbookmark'])->name('comment.unbookmark');
+
+Route::get('/stores', [StoreController::class, 'index']);
+Route::get('/stores/create', [StoreController::class, 'create']);
+Route::get('/stores/{store}', [StoreController::class, 'show']);
+Route::get('/stores/{store}/edit', [StoreController::class, 'edit']);
+Route::put('/stores/{store}', [StoreController::class, 'update']);
+Route::post('/stores', [StoreController::class, 'store']);
+Route::delete('/stores/{store}', [StoreController::class, 'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

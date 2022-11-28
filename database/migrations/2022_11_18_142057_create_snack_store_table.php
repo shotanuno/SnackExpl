@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('snack_id')->constrained();
             $table->foreignId('store_id')->constrained();
             $table->primary(['snack_id', 'store_id']);
-            $table->timestamps();
         });
     }
 

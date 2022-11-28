@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Snack extends Model
+class Store extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,23 +16,15 @@ class Snack extends Model
         'overview'
     ];
     
-    public function getPaginateByLimit(int $limit_count = 10)
+    public function snacks()
     {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
-    
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-    
-    public function stores()
-    {
-        return $this->belongsToMany(Store::class);
+        return $this->belongsToMany(Snack::class);
     }
     
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+    
+    
 }

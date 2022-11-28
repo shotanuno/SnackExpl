@@ -15,6 +15,13 @@
                 <input type="text" name="snack[name]" placeholder="公式の名称でお願いします" value="{{ old('snack.name') }}"/>
                 <p class="name__error" style="color:red">{{ $errors->first('snack.name') }}</p>
             </div>
+            <div class='store'>
+                <h2>お店</h2>
+                @foreach($stores as $store)
+                    <input type="checkbox" name="store[]" id="{{ $store->id }}" value="{{ $store->id }}"><label for="{{ $store->id }}">  {{ $store->name }}<br></label>
+                @endforeach
+                <p class="store_error" style="color:red">{{ $errors->first('store[]') }}</p>
+            </div>
             <div class="overview">
                 <h2 style='padding: 20px 0 0 0;'>詳細:</h2>
                 <textarea name="snack[overview]" placeholder="そのお菓子の詳細について記入してください">{{ old('snack.overview') }}</textarea>
