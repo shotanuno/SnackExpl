@@ -41,7 +41,9 @@
                 {{ $snacks->links('vendor.pagination.tailwind2') }}
             </div>
         </div>
-            
+        <div class='back' style='padding: 10px 50px;'>
+            <a href='/stores'>[店一覧へ戻る]</a>
+        </div>
         </div>
         <script>
             function deleteStore() {
