@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Comment;
 use App\Models\Snack;
 use App\Models\User;
@@ -64,10 +65,17 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        return view("comments.show")->with([
-            'comment' => $comment,
-            'bookmark_list' => auth()->user()->comments()->get()
-        ]);
+        if( Auth::check()){
+            return view("comments.show")->with([
+                'comment' => $comment,
+                'bookmark_list' => auth()->user()->comments()->get()
+            ]);
+        } else {
+            return view("comments.show")->with([
+                'comment' => $comment
+            ]);
+        }
+        // Auth::check()で、ログイン済みの時の処理ができる.
     }
 
     /**
@@ -114,7 +122,7 @@ class CommentController extends Controller
     public function delete(Comment $comment)
     {
         $user = auth()->user();
-        if($user->can('update', $comment)){
+        if($user->can('delete', $comment)){
             $comment->delete();
             return redirect('/snacks/' . $comment->snack->id);
         } else {
@@ -124,6 +132,7 @@ class CommentController extends Controller
     
     public function bookmarked()
     {
+        
         $comment = auth()->user()->comments()->orderBy('created_at', 'desc')->paginate(10);
         return view('comments.bookmarked')->with([
             'comments' => $comment,

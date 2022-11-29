@@ -42,6 +42,12 @@ class CommentPolicy
      * @return \Illuminate\Auth\Access\Response|bool
      */
      
+     
+     public function bookmarked(User $user, Comment $comment)
+    {
+        return $user->id == $comment->user_id;
+    }
+     
      public function isAdmin(User $user) {
           $admin = config('app.admin');
           return in_array($user->id, $admin);
