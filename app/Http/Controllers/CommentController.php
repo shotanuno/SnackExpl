@@ -113,8 +113,13 @@ class CommentController extends Controller
      */
     public function delete(Comment $comment)
     {
-        $comment->delete();
-        return redirect('/snacks/' . $comment->snack->id);
+        $user = auth()->user();
+        if($user->can('update', $comment)){
+            $comment->delete();
+            return redirect('/snacks/' . $comment->snack->id);
+        } else {
+            return redirect('/comments/' . $comment->id);
+        }
     }
     
     public function bookmarked()
