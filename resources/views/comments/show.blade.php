@@ -29,15 +29,17 @@
         <div class='comment_rating'>
             <h2 class="rating" style='padding: 10px 0 0 70px;'>評価：{{ $comment->rating }}</h2>
         </div>
-        <div class='to_edit' style='padding: 10px 50px;'>
-        <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
-        </div>
+        @if(Auth::id() === $comment->user_id || Auth::id() === 1)
+            <div class='to_edit' style='padding: 10px 50px;'>
+                <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
+            </div>
+            <form action='{{ route('comment.delete', ['comment' => $comment->id]) }}' id="form_{{ $comment->id }}" method="post" style="display:inline; padding: 10px 50px;">
+                @csrf
+                @method('DELETE')
+                <button type="submit", onclick="return deleteComment()">[削除する]</button> 
+            </form>
+        @endif
         
-        <form action='{{ route('comment.delete', ['comment' => $comment->id]) }}' id="form_{{ $comment->id }}" method="post" style="display:inline; padding: 10px 50px;">
-            @csrf
-            @method('DELETE')
-            <button type="submit", onclick="return deleteComment()">[削除する]</button> 
-        </form>
         @auth
             <div class="comment_bookmark" style='padding: 20px 0 0 50px;'>
                 @if ($bookmark_list->contains($comment->id))
