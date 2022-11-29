@@ -11,40 +11,6 @@ class CommentPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Comment $comment)
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function create(User $user)
-    {
-        return true;
-    }
-
-    /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
@@ -53,11 +19,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        if($user->id == $model->id){
-            return true;
-        }  else {
-            return false;
-        }
+        return $user->id == $comment->user_id;
     }
 
     /**
@@ -69,11 +31,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        if($user->id == $model->id){
-            return true;
-        }  else {
-            return false;
-        }
+        return $user->id == $comment->user_id;
     }
 
     /**
@@ -83,4 +41,15 @@ class CommentPolicy
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Auth\Access\Response|bool
      */
+     
+     public function isAdmin(User $user) {
+          $admin = config('app.admin');
+          return in_array($user->id, $admin);
+     }
+
+     public function before(User $user, $ability) {
+          if ($this->isAdmin($user)) {
+               return true;
+          }
+     }
 }

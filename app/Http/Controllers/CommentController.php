@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Snack;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use Illuminate\Pagination\Paginator;
@@ -77,9 +78,14 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        return view('comments.edit')->with([
-            'comment' => $comment
-        ]);
+        $user = auth()->user();
+        if($user->can('update', $comment)){
+            return view('comments.edit')->with([
+                'comment' => $comment
+            ]);
+        } else {
+            return redirect('/comments/' . $comment->id);
+        }
     }
 
     /**
