@@ -21,33 +21,41 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [SnackController::class, 'index']);
-Route::get('/snacks/create', [SnackController::class, 'create']);
-Route::get('/comments/{snack}/create', [CommentController::class, 'create']);
-
-Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
+Route::get('/snacks/create', [SnackController::class, 'create'])->middleware('auth');
+Route::get('/comments/{snack}/create', [CommentController::class, 'create'])->middleware('auth');
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
-Route::put('/snacks/{snack}', [SnackController::class, 'update']);
-Route::post('/snacks/{snack}', [SnackController::class, 'add']);
-Route::post('/snacks', [SnackController::class, 'store']);
-Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/snacks/{snack}/edit', [SnackController::class, 'edit']);
+    Route::put('/snacks/{snack}', [SnackController::class, 'update']);
+    Route::post('/snacks/{snack}', [SnackController::class, 'add']);
+    Route::post('/snacks', [SnackController::class, 'store']);
+    Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
+});
 
 Route::get('/comments', [CommentController::class, 'index']);
-Route::get('/comments/bookmarked', [CommentController::class, 'bookmarked']);
+Route::get('/comments/bookmarked', [CommentController::class, 'bookmarked'])->middleware('auth');
 Route::get('/comments/{comment}', [CommentController::class, 'show']);
-Route::get('comments/{comment}/edit', [CommentController::class, 'edit']);
-Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
-Route::post('/comments/{snack}', [CommentController::class, 'store']);
-Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comment.delete');
-Route::post('/comments/{comment}/bookmark', [CommentController::class, 'bookmark'])->name('comment.bookmark');
-Route::post('comments/{comment}/unbookmark', [CommentController::class, 'unbookmark'])->name('comment.unbookmark');
+
+Route::middleware('auth')->group(function () {
+    Route::get('comments/{comment}/edit', [CommentController::class, 'edit']);
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
+    Route::post('/comments/{snack}', [CommentController::class, 'store']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comment.delete');
+    Route::post('/comments/{comment}/bookmark', [CommentController::class, 'bookmark'])->name('comment.bookmark');
+    Route::post('comments/{comment}/unbookmark', [CommentController::class, 'unbookmark'])->name('comment.unbookmark');
+});
 
 Route::get('/stores', [StoreController::class, 'index']);
-Route::get('/stores/create', [StoreController::class, 'create']);
+Route::get('/stores/create', [StoreController::class, 'create'])->middleware('auth');
 Route::get('/stores/{store}', [StoreController::class, 'show']);
-Route::get('/stores/{store}/edit', [StoreController::class, 'edit']);
-Route::put('/stores/{store}', [StoreController::class, 'update']);
-Route::post('/stores', [StoreController::class, 'store']);
-Route::delete('/stores/{store}', [StoreController::class, 'delete']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/stores/{store}/edit', [StoreController::class, 'edit']);
+    Route::put('/stores/{store}', [StoreController::class, 'update']);
+    Route::post('/stores', [StoreController::class, 'store']);
+    Route::delete('/stores/{store}', [StoreController::class, 'delete']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
