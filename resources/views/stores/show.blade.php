@@ -23,9 +23,11 @@
                 <p>{{ $store->overview }}</p>
             </div>
         </div>
-        <div class='store_edit' style='padding: 10px 50px;'>
-            <a href='/stores/{{ $store->id }}/edit'>[編集]</a>
-        </div>
+        @if(Auth::id() == implode(config('app.admin')))
+            <div class='store_edit' style='padding: 10px 50px;'>
+                <a href='/stores/{{ $store->id }}/edit'>[編集]</a>
+            </div>
+        @endif
         <form action="/stores/{{ $store->id }}" id="form_{{ $store->id }}" method="post" style="display:inline; padding: 20px 50px;">
                 @csrf
                 @method('DELETE')
@@ -43,7 +45,6 @@
         </div>
         <div class='back' style='padding: 10px 50px;'>
             <a href='/stores'>[店一覧へ戻る]</a>
-        </div>
         </div>
         <script>
             function deleteStore() {
