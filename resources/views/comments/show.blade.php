@@ -29,7 +29,7 @@
         <div class='comment_rating'>
             <h2 class="rating" style='padding: 10px 0 0 70px;'>評価：{{ $comment->rating }}</h2>
         </div>
-        @if(Auth::id() === $comment->user_id || Auth::id() === 1)
+        @if(Auth::id() === $comment->user_id || Auth::id() == implode(config('app.admin')))
             <div class='to_edit' style='padding: 10px 50px;'>
                 <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
             </div>
