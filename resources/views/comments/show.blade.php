@@ -58,11 +58,11 @@
                 @endif
             </div>
         @endauth
+        
+        @guest
             <div class='advise' style='padding: 10px 50px'>
                 <p>ログインするとこの口コミをブックマークできます</p>
             </div>
-        @guest
-            
         @endguest
         
         <div class='to_previous' style='padding: 10px 50px;'>
