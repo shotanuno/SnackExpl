@@ -34,10 +34,12 @@ class SnackController extends Controller
      */
     public function create()
     {
-        $store = Store::get();
-        return view('snacks/create')->with([
-            'stores' => $store
-        ]);
+        
+            $store = Store::get();
+            return view('snacks/create')->with([
+                'stores' => $store
+            ]);
+        
     }
 
     /**
@@ -104,11 +106,15 @@ class SnackController extends Controller
      */
     public function edit(Snack $snack)
     {
-        $store = Store::get();
-        return view('snacks/edit')->with([
-            'snack' => $snack,
-            'stores' => $store
-        ]);
+        if(auth()->user()->id == 1){
+            $store = Store::get();
+            return view('snacks/edit')->with([
+                'snack' => $snack,
+                'stores' => $store
+            ]);
+        } else {
+            return redirect('/snacks/' . $snack->id);
+        }    
     }
     
     /**
