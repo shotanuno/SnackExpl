@@ -34,12 +34,14 @@ class SnackController extends Controller
      */
     public function create()
     {
-        
+        if(auth()->user()->id == implode(config('app.admin'))){
             $store = Store::get();
             return view('snacks/create')->with([
                 'stores' => $store
             ]);
-        
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
