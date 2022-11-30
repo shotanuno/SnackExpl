@@ -32,7 +32,11 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('stores.create');
+        if(auth()->user()->id == implode(config('app.admin'))){
+            return view('stores.create');
+        } else {
+            return redirect('/stores');
+        }
     }
 
     /**
