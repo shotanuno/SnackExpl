@@ -18,15 +18,17 @@
             @foreach($images as $image)
                 <img src="{{ $image->image_path }}">
             @endforeach
-            <h2 style='padding: 10px 0 0 30px;'>お菓子の画像を追加する</h2>
-            <form action='/snacks/{{ $snack->id }}' method='POST' enctype='multipart/form-data'>
-                @csrf
-                <div class='add_image'>
-                    <input type="file" name="image"/>
-                    <input type="submit" value="追加"/>
-                    <p style='color:red'>{{ $errors->first('image') }}</p>
-                </div>
-            </form>
+            @if(Auth::id() == implode(config('app.admin')))
+                <h2 style='padding: 10px 0 0 30px;'>お菓子の画像を追加する</h2>
+                <form action='/snacks/{{ $snack->id }}' method='POST' enctype='multipart/form-data'>
+                    @csrf
+                    <div class='add_image'>
+                        <input type="file" name="image"/>
+                        <input type="submit" value="追加"/>
+                        <p style='color:red'>{{ $errors->first('image') }}</p>
+                    </div>
+                </form>
+            @endif
         </div>
         <div class="content" style='padding: 0 70px;'>
             <div class="content__snack">
