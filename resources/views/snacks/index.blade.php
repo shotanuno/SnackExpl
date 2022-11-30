@@ -18,11 +18,13 @@
                         <a href="/snacks/{{ $snack->id }}">{{ $snack->name }}</a>
                     </h2>
                     <p class='overview'>{{ $snack->overview }}</p>
-                    <form action="/snacks/{{ $snack->id }}" id="form_{{ $snack->id }}" method="post" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit", onclick="return deleteSnack()" style='padding: 10px 0 0 0;'>[削除]</button> 
-                    </form>
+                    @if(Auth::id() == implode(config('app.admin')))
+                        <form action="/snacks/{{ $snack->id }}" id="form_{{ $snack->id }}" method="post" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit", onclick="return deleteSnack()" style='padding: 10px 0 0 0;'>[削除]</button> 
+                        </form>
+                    @endif
                 </div>
             @endforeach
         </div>
