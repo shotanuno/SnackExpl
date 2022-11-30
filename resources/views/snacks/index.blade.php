@@ -29,7 +29,11 @@
         <div class='paginate' style='padding: 0 0 0 70px;'>
             {{ $snacks->links() }}
         </div>
-        <a href='/snacks/create' style='padding: 0 0 0 50px;'>[お菓子の追加]</a>
+        
+        @if(Auth::id() == implode(config('app.admin')))
+            <a href='/snacks/create' style='padding: 0 0 0 50px;'>[お菓子の追加]</a>
+        @endif
+        {{-- divで<a>タグを囲む --}}
         
         <script>
             function deleteSnack() {
