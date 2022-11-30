@@ -106,7 +106,7 @@ class SnackController extends Controller
      */
     public function edit(Snack $snack)
     {
-        if(auth()->user()->id == 1){
+        if(auth()->user()->id == implode(config('app.admin'))){
             $store = Store::get();
             return view('snacks/edit')->with([
                 'snack' => $snack,
@@ -116,6 +116,7 @@ class SnackController extends Controller
             return redirect('/snacks/' . $snack->id);
         }    
     }
+    // config('app.admin')の状態だと配列のままなのでimplode関数を用いて文字列に変換する
     
     /**
      * Update the specified resource in storage.
