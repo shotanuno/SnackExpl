@@ -57,8 +57,14 @@
             <a href='/comments/{{ $snack->id }}/create' style='padding: 0 0 0 70px;'>[口コミを投稿]</a>
         @endauth
         
-        <a href='/snacks/{{ $snack->id }}/edit' style='padding: 0 0 0 70px;'>[編集]</a>
-        
+        @if(Auth::id() === !1)
+            <a href='/snacks/{{ $snack->id }}/edit' style='padding: 10px 70px;'>[編集]</a>
+        @endif
+        {{--
+        <div class='edit' style='padding: 10px 70px;'>
+            <a href='/snacks/{{ $snack->id }}/edit'>[編集]</a>
+        </div>
+        --}}
         <div class="footer" style='padding: 20px 0 0 50px;'>
             <a href="/" >戻る</a>
         </div>
