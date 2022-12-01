@@ -66,7 +66,7 @@
         @endguest
         
         <div class='to_previous' style='padding: 10px 50px;'>
-            <a href="{{ url()->previous() }}">[戻る]</a>
+            <a href="/snacks/{{ $comment->snack->id }}">[{{ $comment->snack->name }}に戻る]</a>
         </div>
         
         <script>
