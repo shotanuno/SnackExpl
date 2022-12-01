@@ -32,7 +32,11 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('stores.create');
+        if(auth()->user()->id == implode(config('app.admin'))){
+            return view('stores.create');
+        } else {
+            return redirect('/stores');
+        }
     }
 
     /**
@@ -78,9 +82,13 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        return view('stores.edit')->with([
-            'store' => $store
-        ]);
+        if(auth()->user()->id == implode(config('app.admin'))){
+            return view('stores.edit')->with([
+                'store' => $store
+            ]);
+        } else {
+            return redirect('/stores/' . $store->id);
+        }
     }
 
     /**

@@ -25,7 +25,9 @@
                 @endforeach
             @endforeach
         </div>
-        <div class="back" style='padding: 50px 20%;'><a href='/stores/create'>[お店の追加]</a></div>
+        @if(Auth::id() == implode(config('app.admin')))
+            <div class="back" style='padding: 50px 20%;'><a href='/stores/create'>[お店の追加]</a></div>
+        @endif
     </body>
 </html>
 

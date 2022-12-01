@@ -29,32 +29,41 @@
         <div class='comment_rating'>
             <h2 class="rating" style='padding: 10px 0 0 70px;'>評価：{{ $comment->rating }}</h2>
         </div>
-        <div class='to_edit' style='padding: 10px 50px;'>
-        <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
-        </div>
+        @if(Auth::id() === $comment->user_id || Auth::id() == implode(config('app.admin')))
+            <div class='to_edit' style='padding: 10px 50px;'>
+                <a href='/comments/{{ $comment->id }}/edit'>[口コミを編集]</a><br>
+            </div>
+            <form action='{{ route('comment.delete', ['comment' => $comment->id]) }}' id="form_{{ $comment->id }}" method="post" style="display:inline; padding: 10px 50px;">
+                @csrf
+                @method('DELETE')
+                <button type="submit", onclick="return deleteComment()">[削除する]</button> 
+            </form>
+        @endif
         
-        <form action='{{ route('comment.delete', ['comment' => $comment->id]) }}' id="form_{{ $comment->id }}" method="post" style="display:inline; padding: 10px 50px;">
-            @csrf
-            @method('DELETE')
-            <button type="submit", onclick="return deleteComment()">[削除する]</button> 
-        </form>
+        @auth
+            <div class="comment_bookmark" style='padding: 20px 0 0 50px;'>
+                @if ($bookmark_list->contains($comment->id))
+                    <form action='{{ route('comment.unbookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
+                        <!-- action="/comments/{ $comment->id }/unbookmark"だと上手く認識されない -->
+                        @csrf
+                        <button type="submit"><img class="w-1/2" src="{{ asset('/image/bookmark.jpg') }}"></button>
+                    </form>
+                    <span>ブックマーク数：{{ $comment->users()->count() }}</span>
+                @else
+                    <form action='{{ route('comment.bookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
+                        @csrf
+                        <button type="submit"><img class="w-1/2" src="{{ asset('/image/unbookmark.jpg') }}"></button>
+                    </form>
+                    <span>ブックマーク数：{{ $comment->users()->count() }}</span>
+                @endif
+            </div>
+        @endauth
         
-        <div class="comment_bookmark" style='padding: 20px 0 0 50px;'>
-            @if ($bookmark_list->contains($comment->id))
-                <form action='{{ route('comment.unbookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
-                    <!-- action="/comments/{ $comment->id }/unbookmark"だと上手く認識されない -->
-                    @csrf
-                    <button type="submit"><img class="w-1/2" src="{{ asset('/image/bookmark.jpg') }}"></button>
-                </form>
-                <span>ブックマーク数：{{ $comment->users()->count() }}</span>
-            @else
-                <form action='{{ route('comment.bookmark', ['comment' => $comment->id]) }}' method="POST" class="border-red-500">
-                    @csrf
-                    <button type="submit"><img class="w-1/2" src="{{ asset('/image/unbookmark.jpg') }}"></button>
-                </form>
-                <span>ブックマーク数：{{ $comment->users()->count() }}</span>
-            @endif
-        </div>
+        @guest
+            <div class='advise' style='padding: 10px 50px'>
+                <p>ログインするとこの口コミをブックマークできます</p>
+            </div>
+        @endguest
         
         <div class='to_previous' style='padding: 10px 50px;'>
             <a href="{{ url()->previous() }}">[戻る]</a>

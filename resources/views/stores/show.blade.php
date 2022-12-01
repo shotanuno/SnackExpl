@@ -23,14 +23,19 @@
                 <p>{{ $store->overview }}</p>
             </div>
         </div>
-        <div class='store_edit' style='padding: 10px 50px;'>
-            <a href='/stores/{{ $store->id }}/edit'>[編集]</a>
-        </div>
-        <form action="/stores/{{ $store->id }}" id="form_{{ $store->id }}" method="post" style="display:inline; padding: 20px 50px;">
-                @csrf
-                @method('DELETE')
-                <button type="submit", onclick="return deleteStore()">[削除]</button> 
-        </form>
+        @if(Auth::id() == implode(config('app.admin')))
+            <div class='store_edit' style='padding: 10px 50px;'>
+                <a href='/stores/{{ $store->id }}/edit'>[編集]</a>
+            </div>
+        @endif
+        
+        @if(Auth::id() == implode(config('app.admin')))
+            <form action="/stores/{{ $store->id }}" id="form_{{ $store->id }}" method="post" style="display:inline; padding: 20px 50px;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit", onclick="return deleteStore()">[削除]</button> 
+            </form>
+        @endif
 
         <div class='snack' style='padding: 10px 70px;'>
             <h3>お菓子一覧</h3>
@@ -43,7 +48,6 @@
         </div>
         <div class='back' style='padding: 10px 50px;'>
             <a href='/stores'>[店一覧へ戻る]</a>
-        </div>
         </div>
         <script>
             function deleteStore() {

@@ -18,15 +18,17 @@
             @foreach($images as $image)
                 <img src="{{ $image->image_path }}">
             @endforeach
-            <h2 style='padding: 10px 0 0 30px;'>お菓子の画像を追加する</h2>
-            <form action='/snacks/{{ $snack->id }}' method='POST' enctype='multipart/form-data'>
-                @csrf
-                <div class='add_image'>
-                    <input type="file" name="image"/>
-                    <input type="submit" value="追加"/>
-                    <p style='color:red'>{{ $errors->first('image') }}</p>
-                </div>
-            </form>
+            @if(Auth::id() == implode(config('app.admin')))
+                <h2 style='padding: 10px 0 0 30px;'>お菓子の画像を追加する</h2>
+                <form action='/snacks/{{ $snack->id }}' method='POST' enctype='multipart/form-data'>
+                    @csrf
+                    <div class='add_image'>
+                        <input type="file" name="image"/>
+                        <input type="submit" value="追加"/>
+                        <p style='color:red'>{{ $errors->first('image') }}</p>
+                    </div>
+                </form>
+            @endif
         </div>
         <div class="content" style='padding: 0 70px;'>
             <div class="content__snack">
@@ -53,10 +55,19 @@
             </div>
         </div>
         
-        <a href='/comments/{{ $snack->id }}/create' style='padding: 0 0 0 70px;'>[口コミを投稿]</a>
+        @auth
+            <a href='/comments/{{ $snack->id }}/create' style='padding: 0 0 0 70px;'>[口コミを投稿]</a>
+            {{-- divで<a>タグを囲む --}}
+        @endauth
         
-        <a href='/snacks/{{ $snack->id }}/edit' style='padding: 0 0 0 70px;'>[編集]</a>
-        
+        @if(Auth::id() == implode(config('app.admin')))
+            <a href='/snacks/{{ $snack->id }}/edit' style='padding: 10px 70px;'>[編集]</a>
+        @endif
+        {{--
+        <div class='edit' style='padding: 10px 70px;'>
+            <a href='/snacks/{{ $snack->id }}/edit'>[編集]</a>
+        </div>
+        --}}
         <div class="footer" style='padding: 20px 0 0 50px;'>
             <a href="/" >戻る</a>
         </div>
