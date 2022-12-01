@@ -55,6 +55,10 @@
                             {{ __('最新の投稿') }}
                         </x-dropdown-link>
                         
+                        <x-dropdown-link :href="route('comment.bookmarked')">
+                            {{ __('ブックマーク一覧') }}
+                        </x-dropdown-link>
+                        
                         <x-dropdown-link :href="route('profile.edit')">
                             @auth
                                 {{ __('プロフィール編集') }}
