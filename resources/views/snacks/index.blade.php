@@ -29,7 +29,7 @@
             @endforeach
         </div>
         <div class='paginate' style='padding: 0 0 0 70px;'>
-            {{ $snacks->links() }}
+            {{ $snacks->links('vendor.pagination.tailwind2') }}
         </div>
         
         @if(Auth::id() == implode(config('app.admin')))
