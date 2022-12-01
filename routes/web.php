@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [SnackController::class, 'index']);
+Route::get('/', [SnackController::class, 'index'])->name('snack.index');
 Route::get('/snacks/create', [SnackController::class, 'create'])->middleware('auth');
 Route::get('/comments/{snack}/create', [CommentController::class, 'create'])->middleware('auth');
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
