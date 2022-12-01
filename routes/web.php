@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/snacks/{snack}', [SnackController::class, 'delete']);
 });
 
-Route::get('/comments', [CommentController::class, 'index']);
+Route::get('/comments', [CommentController::class, 'index'])->name('comment.index');
 Route::get('/comments/bookmarked', [CommentController::class, 'bookmarked'])->middleware('auth');
 Route::get('/comments/{comment}', [CommentController::class, 'show']);
 
