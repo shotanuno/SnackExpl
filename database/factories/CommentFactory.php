@@ -21,7 +21,7 @@ class CommentFactory extends Factory
             'body' => fake()->text($maxNbChars = 30),
             'rating' => rand(1, 5),
             'snack_id' => rand(1, 30),
-            'user_id' => 1,
+            'user_id' => rand(1,3),
         ];
     }
 }
