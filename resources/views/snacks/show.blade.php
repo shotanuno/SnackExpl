@@ -46,7 +46,7 @@
         <div class='comment'>
             <h3 style='padding: 10px 70px;'>このお菓子への投稿　最新10件</h3>
             @foreach($comments as $comment)
-                <div class='comment_content' style='padding: 5px 70px;'>
+                <div class='comment_content' style='padding: 5px 90px;'>
                     <a href="/comments/{{ $comment->id }}">・{{ $comment->title }}</a><br>
                 </div>
             @endforeach  
