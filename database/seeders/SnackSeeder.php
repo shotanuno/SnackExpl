@@ -15,6 +15,6 @@ class SnackSeeder extends Seeder
      */
     public function run()
     {
-        Snack::factory()->count(30)->create();
+        Snack::factory()->count(100)->create();
     }
 }
