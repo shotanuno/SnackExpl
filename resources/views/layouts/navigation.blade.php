@@ -42,6 +42,11 @@
                     </x-slot>
                     
                     <x-slot name="content">
+                        
+                        <x-dropdown-link :href="route('store.index')">
+                            {{ __('お店一覧') }}
+                        </x-dropdown-link>
+                        
                         <x-dropdown-link :href="route('snack.index')">
                             {{ __('お菓子一覧') }}
                         </x-dropdown-link>
