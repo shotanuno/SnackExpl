@@ -26,7 +26,12 @@ class SnackController extends Controller
             'snacks' => $snack->getPaginateByLimit()
         ]);
     }
-
+    
+    public function random(){
+        $random = Snack::inRandomOrder()->first();
+        return redirect("/snacks/" . $random->id);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

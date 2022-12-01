@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SnackController::class, 'index'])->name('snack.index');
 Route::get('/snacks/create', [SnackController::class, 'create'])->middleware('auth');
 Route::get('/comments/{snack}/create', [CommentController::class, 'create'])->middleware('auth');
+Route::get('/snacks/random', [SnackController::class, 'random'])->name('random');
 Route::get('/snacks/{snack}', [SnackController::class, 'show']);
 
 Route::middleware('auth')->group(function () {

@@ -21,6 +21,10 @@
                             {{ __('ゲスト') }}
                         @endguest
                     </x-nav-link>
+                    
+                    <x-nav-link :href="route('random')">
+                        {{ __('ランダムジャンプ') }}
+                    </x-nav-link>
                 </div>
             </div>
 
