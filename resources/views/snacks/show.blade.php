@@ -56,8 +56,7 @@
         </div>
         
         @auth
-            <a href='/comments/{{ $snack->id }}/create' style='padding: 0 0 0 70px;'>[口コミを投稿]</a>
-            {{-- divで<a>タグを囲む --}}
+            <div class='create' style='padding: 0 0 0 70px;'><a href='/comments/{{ $snack->id }}/create'>[口コミを投稿]</a></div>
         @endauth
         
         @if(Auth::id() == implode(config('app.admin')))
