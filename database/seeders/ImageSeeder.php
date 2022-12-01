@@ -67,7 +67,7 @@ class ImageSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ]);
-        for ($i = 5; $i < 105; $i++){
+        for ($i = 1; $i < 101; $i++){
             $image_path = $id_path[array_rand($id_path, 1)];
             DB::table('images')->insert([
                 'image_path' => $image_path,
