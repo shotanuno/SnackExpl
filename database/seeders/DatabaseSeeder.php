@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
                     SnackStoreSeeder::class,
                     UserSeeder::class,
                     CommentSeeder::class,
+                    ImageSeeder::class,
 
             ]);
         // \App\Models\User::factory()->create([
