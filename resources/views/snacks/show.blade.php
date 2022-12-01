@@ -40,7 +40,7 @@
                 @endforeach
                 <h2>お菓子の詳細</h2>
                 <p>{{ $snack->overview }}</p>
-                <h2>評価：{{ $rating }}</h2>
+                <h2 style='padding: 10px 0'>評価：{{ $rating }}</h2>
             </div>
         </div>
         <div class='comment'>
