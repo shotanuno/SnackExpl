@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('comments/{comment}/unbookmark', [CommentController::class, 'unbookmark'])->name('comment.unbookmark');
 });
 
-Route::get('/stores', [StoreController::class, 'index']);
+Route::get('/stores', [StoreController::class, 'index'])->name('store.index');
 Route::get('/stores/create', [StoreController::class, 'create'])->middleware('auth');
 Route::get('/stores/{store}', [StoreController::class, 'show']);
 
