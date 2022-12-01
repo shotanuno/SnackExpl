@@ -22,6 +22,14 @@ class ImageSeeder extends Seeder
             'snack5_p8by4v' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669915997/snack5_p8by4v.jpg',
             'snack3_vrqgu6' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669915997/snack3_vrqgu6.jpg',
             'snack4_nr2q33' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669915997/snack4_nr2q33.jpg',
+            'snack12_i2ofua' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919519/snack12_i2ofua.jpg',
+            'snack6_xtzmmk' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919519/snack6_xtzmmk.jpg',
+            'snack13_w03zz9' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919518/snack13_w03zz9.jpg',
+            'snack8_wzynxh' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919518/snack8_wzynxh.jpg',
+            'snack9_wad0gz' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919518/snack9_wad0gz.jpg',
+            'snack10_dlzgh4' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919518/snack10_dlzgh4.jpg',
+            'snack11_maparo' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919518/snack11_maparo.jpg',
+            'snack7_du5aei' => 'https://res.cloudinary.com/dcfv11t63/image/upload/v1669919518/snack7_du5aei.jpg',
             );
         
         DB::table('images')->insert([
@@ -59,7 +67,7 @@ class ImageSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ]);
-        for ($i = 5; $i < 35; $i++){
+        for ($i = 5; $i < 105; $i++){
             $image_path = $id_path[array_rand($id_path, 1)];
             DB::table('images')->insert([
                 'image_path' => $image_path,
