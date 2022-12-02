@@ -19,9 +19,9 @@ class CommentFactory extends Factory
         return [
             'title' => fake()->word,
             'body' => fake()->text($maxNbChars = 30),
-            'rating' => rand(1, 5),
-            'snack_id' => rand(1, 100),
-            'user_id' => rand(1,3),
+            'rating' => RANDOM(1, 5),
+            'snack_id' => RANDOM(1, 100),
+            'user_id' => RANDOM(1,3),
         ];
     }
 }
