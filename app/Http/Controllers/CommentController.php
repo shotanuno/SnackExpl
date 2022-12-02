@@ -151,4 +151,16 @@ class CommentController extends Controller
         $comment->users()->detach(auth()->user());
         return redirect(url()->previous());
     }
+    
+    public function mycomment()
+    {
+        if(Auth::check()){
+            $comment = Comment::where('user_id', Auth::id())->paginate(20);
+            return view('comments.mycomment')->with([
+                'comments' => $comment
+            ]);
+        } else {
+            return redirect('/register');
+        }
+    }
 }
