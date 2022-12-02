@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/comments', [CommentController::class, 'index'])->name('comment.index');
 Route::get('/comments/bookmarked', [CommentController::class, 'bookmarked'])->name('comment.bookmarked')->middleware('auth');
-Route::get('/comments/mycomment', [CommentController::class, 'mycomment']);
+Route::get('/comments/mycomment', [CommentController::class, 'mycomment'])->name('mycomment');
 Route::get('/comments/{comment}', [CommentController::class, 'show']);
 
 Route::middleware('auth')->group(function () {

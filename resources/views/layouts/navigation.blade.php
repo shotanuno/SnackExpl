@@ -63,6 +63,10 @@
                             {{ __('ブックマーク一覧') }}
                         </x-dropdown-link>
                         
+                        <x-dropdown-link :href="route('mycomment')">
+                            {{ __('自身の口コミ') }}
+                        </x-dropdown-link>
+                        
                         <x-dropdown-link :href="route('profile.edit')">
                             @auth
                                 {{ __('プロフィール編集') }}
