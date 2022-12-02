@@ -34,13 +34,13 @@
             <div class="content__snack">
                 <h2>店名</h2>
                 @foreach($snack->stores as $store)
-                    <div class='store' style='padding: 10px 0;'>
+                    <div class='store' style='padding: 10px 20px;'>
                         <a href='/stores/{{ $store->id }}'>・{{ $store->name }}</a>
                     </div>
                 @endforeach
                 <h2>お菓子の詳細</h2>
                 <p>{{ $snack->overview }}</p>
-                <h2 style='padding: 10px 0'>評価：{{ $rating }}</h2>
+                <h2 style='padding: 15px 0'>評価：{{ $rating }}</h2>
             </div>
         </div>
         <div class='comment'>
