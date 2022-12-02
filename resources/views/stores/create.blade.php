@@ -17,7 +17,7 @@
             </div>
             <div class="overview">
                 <h2 style='padding: 20px 0 0 0;'>詳細:</h2>
-                <textarea name="store[overview]" placeholder="そのお店の詳細について記入してください">{{ old('store.overview') }}</textarea>
+                <textarea name="store[overview]" placeholder="そのお店の詳細について記入してください" style="width:40%; height:80px;">{{ old('store.overview') }}</textarea>
                 <p class="overview__error" style="color:red">{{ $errors->first('store.overview') }}</p>
             </div>
             <div class='image'>
