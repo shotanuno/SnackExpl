@@ -23,7 +23,7 @@
             </div>
             <div class='content__overview' style='padding: 10px 70px;'>
                 <h2>詳細:</h2>
-                <textarea name='store[overview]' >{{ $store->overview }}</textarea>
+                <textarea name='store[overview]' style="width:40%; height:80px;">{{ $store->overview }}</textarea>
                 <p class="overview__error" style="color:red">{{ $errors->first('store.overview') }}</p>
             </div>
             <input type="submit" value="保存" style='padding: 5px 70px;'>
