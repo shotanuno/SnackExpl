@@ -18,7 +18,7 @@
             </div>
             <div class="body">
                 <h2 style='padding: 10px 0 0 0;'>内容:</h2>
-                <textarea name="comment[body]" placeholder="コメントを記載">{{ old('comment.body') }}</textarea>
+                <textarea name="comment[body]" placeholder="コメントを記載" style="width:40%; height:80px;">{{ old('comment.body') }}</textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('comment.body') }}</p>
                 <h2 style='padding: 10px 0 0 0;'>評価:</h2>
                 <input type="number" name="comment[rating]" min="1" max="5" value={{ old('comment.rating') }}>
