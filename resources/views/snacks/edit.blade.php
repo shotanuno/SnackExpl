@@ -35,7 +35,7 @@
             </div>
             <div class='content__overview'>
                 <h2>詳細:</h2>
-                <textarea name='snack[overview]' >{{ $snack->overview }}</textarea>
+                <textarea name='snack[overview]' style="width:40%; height:80px;">{{ $snack->overview }}</textarea>
                 <p class="overview__error" style="color:red">{{ $errors->first('snack.overview') }}</p>
             </div>
             <input type="submit" value="保存">
