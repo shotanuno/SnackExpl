@@ -26,17 +26,17 @@ class SnackStoreSeeder extends Seeder
         }
         
         for ($i = 0;$i < 50; $i++){
-            $set_snack_id = Snack::select('id')->orderByRaw('mt_rand(1,100)')->first()->id;
-            $set_store_id = Store::select('id')->orderByRaw('mt_rand(1,100)')->first()->id;
+            $set_snack_id = Snack::where('id', mt_rand(1,100))->first();
+            $set_store_id = Store::where('id', mt_rand(1,4))->first();
             $snack_store = DB::table('snack_store')->where([
-                    ['snack_id', '=' , $set_snack_id],
-                    ['store_id', '=' , $set_store_id],
+                    ['snack_id', '=' , $set_snack_id->id],
+                    ['store_id', '=' , $set_store_id->id],
             ])->get();
 
             if($snack_store->isEmpty()){
                 DB::table('snack_store')->insert([
-                    'snack_id' => $set_snack_id,
-                    'store_id' => $set_store_id,
+                    'snack_id' => $set_snack_id->id,
+                    'store_id' => $set_store_id->id,
                 ]);
             } else {
                 $i--;
