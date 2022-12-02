@@ -25,17 +25,18 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700 leading-5">
-                    {!! __('表示中') !!}
+                    {!! __('最新の') !!}
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        {!! __('から') !!}
+                        {!! __('件から') !!}
                         <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                        {!! __('件を表示') !!}
                     @else
                         {{ $paginator->count() }}
                     @endif
                     {!! __('　全') !!}
                     <span class="font-medium">{{ $paginator->total() }}</span>
-                    {!! __('件') !!}
+                    {!! __('件中') !!}
                 </p>
             </div>
 
