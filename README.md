@@ -1,66 +1,115 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SnackExpl
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 概要
+個人開発
+コンビニのお菓子について、その詳細や様々な人からの口コミを見れるサイト。
+また、お菓子をランダムで表示する機能がある。
+制作期間：制作中（2022.9〜）
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 作成背景
+**「SnackのExplore × Expain」**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+「自分のお気に入りのお菓子を皆に伝えたい」
+「いつも買っているお菓子に飽きた」
+という思いから、お菓子のランダム表示機能を搭載した、各コンビニ毎のお菓子を統合した口コミサイトの作成を決意。
+今まで食べてこなかったお菓子との出会いや、口コミの解説によるお菓子の新たな魅力と巡り合う意味でSnackExplという名前を付けた。
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+# 使用言語
+* PHP 8.0.25
+* Laravel 9.19
+* HTML
+* CSS
+* Javascript
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# 機能一覧
+* 非ログインユーザー
+    * お菓子の詳細閲覧機能
+    * お店の詳細閲覧機能
+    * 口コミの閲覧機能
+    * お菓子の詳細ランダム表示機能
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* ログインユーザー
+    * お菓子の詳細閲覧機能
+    * お店の詳細閲覧機能
+    * 口コミの閲覧機能
+    * お菓子の詳細ランダム表示機能
+    * 口コミの投稿,編集,削除機能
+    * 口コミのブックマーク機能
+    * ブックマークした口コミ一覧の表示機能
 
-## Laravel Sponsors
+* 管理者
+    * お菓子の詳細閲覧機能
+    * お店の詳細閲覧機能
+    * 口コミの閲覧機能
+    * お菓子の詳細ランダム表示機能
+    * 口コミの投稿,編集,削除機能
+    * 口コミのブックマーク機能
+    * ブックマークした口コミ一覧の表示機能
+    * 新しいお菓子の追加機能
+    * お菓子の詳細の編集,削除機能
+    * お菓子の画像の追加機能
+    * 新しいお店の追加機能
+    * お店の詳細の編集,削除機能
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+* その他
+    * ログイン機能
+    * バリデーション機能
+    * ページネーション機能 etc.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+# 特にこだわった機能
+* お菓子のランダム表示機能  
+コントローラーにランダムメソッドを追加することで、URLからどのお菓子詳細に飛ぶのかわからないようにした。
 
-## Contributing
+* ポリモーフィックリレーションの使用  
+一対多のポリモーフィックリレーションを使用することで必要なテーブルの数を3個から1個に減らすことができた。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* 多対多リレーションの使用  
+ブックマーク機能の実装の際に多対多のリレーションを使用した。
 
-## Code of Conduct
+* policyを使用した認可機能  
+policyとauthorizeを使うことで、ユーザーによって制限される機能や使用できる機能を分け、情報の信頼性を担保した。
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+# 今後追加したい機能
+* お菓子の検索機能
+* 各コンビニ毎でのお菓子の比較
+* 評価ごとのお菓子一覧表示
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+# 課題
+* レイアウトやデザインの凝り具合
+* 外部API(social )の組み込み
+* react(JSのフレームワーク)の使用
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# 環境構築の手順
+下記コードを順に入力
+```
+$ git clone git@github.com:shotanuno/SnackExpl.git
+```
+```
+$ cd snackexpl
+```
+```
+$ composer install
+```
+```
+$ npm install
+```
+```
+$ cp .env.example .env
+```
+```
+$php artisan key:generate
+```
+上記のコマンド入力後、.envにデータベースの情報を入力する
+```
+$ php artisan migrate --seed
+```
+```
+$ php artisan serve --port=8080
+```
