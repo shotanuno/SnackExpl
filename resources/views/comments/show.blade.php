@@ -23,7 +23,7 @@
                 </a>
             </h2>
         </div>
-        <div class="comment_body" style='padding: 10px 0 0 70px;'>
+        <div class="comment_body" style='padding: 10px 0 0 70px; white-space: pre-wrap;'>
             <p>{{ $comment->body }}</p>
         </div>
         <div class='comment_rating'>
