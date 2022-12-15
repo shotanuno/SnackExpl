@@ -23,9 +23,7 @@
                 </a>
             </h2>
         </div>
-        <div class="comment_body" style='padding: 10px 0 0 70px; white-space: pre-wrap;'>
-            <p>{{ $comment->body }}</p>
-        </div>
+        <div class="comment_body" style='padding: 10px 0; white-space: pre-wrap; border: 1px solid #333333; margin: 0 30% 0 70px;'>{{ $comment->body }}</div>
         <div class='comment_rating'>
             <h2 class="rating" style='padding: 10px 0 0 70px;'>評価：{{ $comment->rating }}</h2>
         </div>
