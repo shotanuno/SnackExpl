@@ -20,7 +20,7 @@ class CommentFactory extends Factory
             'title' => fake()->word,
             'body' => fake()->text($maxNbChars = 30),
             'rating' => mt_rand(1, 5),
-            'snack_id' => mt_rand(1, 30),
+            'snack_id' => mt_rand(1, 100),
             'user_id' => mt_rand(1,3),
         ];
     }
